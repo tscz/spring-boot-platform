@@ -46,4 +46,9 @@ public class Answer extends AuditModel {
 		this.question = question;
 	}
 
+	@Override
+	public String toString() {
+		return "Answer [id=" + id + ", text=" + text + ", question=" + question.getId() + "]";
+	}
+
 }
