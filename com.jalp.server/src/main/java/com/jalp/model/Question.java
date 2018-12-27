@@ -43,4 +43,11 @@ public class Question extends AuditModel {
 		this.description = description;
 	}
 
+	@Override
+	public String toString() {
+		return "Question [id=" + id + ", title=" + title + ", description=" + description + "]";
+	}
+
+	
+	
 }
