@@ -6,8 +6,6 @@ HELP.md
 
 /target/
 /bin/
-application.properties
-
 
 ### STS ###
 .apt_generated
