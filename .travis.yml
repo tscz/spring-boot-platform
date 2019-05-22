@@ -1,3 +1,29 @@
 language: java
 jdk: 
   - openjdk12
+addons:
+  postgresql: "10"
+  apt:
+    packages:
+    - postgresql-10
+    - postgresql-client-10
+env:
+  global:
+  - PGPORT=5433
+  - JDBC_DATABASE_URL=jdbc:postgresql://localhost:5433/jalp_junit
+  - JDBC_DATABASE_USERNAME=postgres
+  - JDBC_DATABASE_PASSWORD=
+  - JPA_SHOW_SQL=true
+before_script:
+  - psql -c 'create database jalp_junit;' -U postgres
+before_install:
+  - sudo cp /etc/postgresql/{9.6,10}/main/pg_hba.conf
+  - sudo /etc/init.d/postgresql restart
+script:
+  - ./gradlew build --info
+deploy:
+  provider: heroku
+  api_key: $API_KEY
+  app:
+    master: jalp-staging
+    production: jalp-production
