@@ -1,9 +1,7 @@
 package com.jalp.server;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
@@ -21,12 +19,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.requiresChannel().requestMatchers(r -> r.getHeader("X-Forwarded-Proto") != null).requiresSecure();
 
 		http.authorizeRequests().anyRequest().authenticated().and().httpBasic();
+
+		http.csrf().disable();
 	}
 
 	@Bean
 	public UserDetailsService userDetailsService() {
 		PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-		UserDetails user = User.withUsername(System.getenv("DEFAULT_USERNAME")).password(encoder.encode(System.getenv("DEFAULT_PASSWORD"))).roles("USER").build();
+		UserDetails user = User.withUsername(System.getenv("DEFAULT_USERNAME"))
+				.password(encoder.encode(System.getenv("DEFAULT_PASSWORD"))).roles("USER").build();
 		InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
 		manager.createUser(user);
 		return manager;
