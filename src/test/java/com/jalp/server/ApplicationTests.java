@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.jalp.server.model.Vocable;
 import com.jalp.server.repository.VocableRepository;
 
-@SpringBootTest()
+@SpringBootTest
 public class ApplicationTests {
 
 	@Autowired
