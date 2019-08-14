@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.DefaultResponseErrorHandler;
+import org.zalando.problem.Problem;
 
 import com.jalp.server.model.JwtRequest;
 import com.jalp.server.model.JwtResponse;
@@ -40,11 +41,20 @@ public class JwtAuthenticationControllerTest {
 	public void noTokenForUnknownUser() {
 		var request = new JwtRequest("unknown", "unknown");
 
-		var response = this.restTemplate.postForEntity("/token", request, JwtResponse.class);
+		var response = this.restTemplate.postForEntity("/token", request, Problem.class);
 
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.UNAUTHORIZED);
-		assertThat(response.getBody().getToken()).isNull();
+		assertThat(response.getBody().getParameters().get("token")).isNull();
+	}
 
+	@Test
+	public void noTokenForKnownUserWithWrongPassword() {
+		var request = new JwtRequest("admin", "unknown");
+
+		var response = this.restTemplate.postForEntity("/token", request, Problem.class);
+
+		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.UNAUTHORIZED);
+		assertThat(response.getBody().getParameters().get("token")).isNull();
 	}
 
 	@Test

@@ -5,6 +5,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
@@ -14,13 +15,15 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport;
 
 @Configuration
 @EnableWebSecurity
+@Import(SecurityProblemSupport.class)
 public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	private ApplicationConfig jwtConfig;
+	private SecurityProblemSupport problemSupport;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -29,8 +32,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 				// enable stateless session
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				// handle an authorized attempts
-				.exceptionHandling().accessDeniedHandler(new RestAccessDeniedHandler())
-				.authenticationEntryPoint(new RestAuthenticationEntryPoint()).and()
+				.exceptionHandling().accessDeniedHandler(problemSupport).authenticationEntryPoint(problemSupport).and()
 				// Add a filter to validate the tokens with every request
 				.addFilterAfter(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class)
 				// authorization requests config

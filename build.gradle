@@ -38,6 +38,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'io.jsonwebtoken:jjwt-api:0.10.7'
 	implementation 'com.google.guava:guava:28.0-jre'
+	implementation 'org.zalando:problem-spring-web:0.23.0'
 
 	runtimeOnly 'org.postgresql:postgresql'
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.10.7', 
