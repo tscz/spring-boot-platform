@@ -1,6 +1,7 @@
 package com.jalp.server;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -13,12 +14,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.zalando.problem.Status;
+import org.zalando.problem.spring.web.advice.validation.ConstraintViolationProblem;
+import org.zalando.problem.spring.web.advice.validation.Violation;
 
 import io.jsonwebtoken.ExpiredJwtException;
 
-@Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
 	@Autowired
@@ -36,15 +38,15 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 		String jwtToken = null;
 
 		if (requestTokenHeader == null) {
-			logger.warn("Authorization header missing");
-			chain.doFilter(request, response);
-			return;
+			SecurityContextHolder.clearContext();
+			throw new ConstraintViolationProblem(Status.BAD_REQUEST,
+					Arrays.asList(new Violation("Request Header", "Authorization header missing")));
 		}
 
 		if (!requestTokenHeader.startsWith("Bearer ")) {
-			logger.warn("JWT Token does not begin with Bearer String");
-			chain.doFilter(request, response);
-			return;
+			SecurityContextHolder.clearContext();
+			throw new ConstraintViolationProblem(Status.BAD_REQUEST,
+					Arrays.asList(new Violation("Request Header", "JWT Token does not begin with Bearer String")));
 		}
 
 		jwtToken = requestTokenHeader.substring(7);
@@ -52,11 +54,13 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 		try {
 			username = jwtTokenUtil.getUsernameFromToken(jwtToken);
 		} catch (IllegalArgumentException e) {
-			System.out.println("Unable to get JWT Token");
 			SecurityContextHolder.clearContext();
+			throw new ConstraintViolationProblem(Status.BAD_REQUEST,
+					Arrays.asList(new Violation("Request Header", "Unable to get JWT Token")));
 		} catch (ExpiredJwtException e) {
-			System.out.println("JWT Token has expired");
 			SecurityContextHolder.clearContext();
+			throw new ConstraintViolationProblem(Status.BAD_REQUEST,
+					Arrays.asList(new Violation("Request Header", "JWT Token has expired")));
 		}
 
 		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
@@ -72,4 +76,11 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 		}
 		chain.doFilter(request, response);
 	}
+
+	@Override
+	protected boolean shouldNotFilter(HttpServletRequest request) {
+		String path = request.getServletPath();
+		return path.startsWith("/token");
+	}
+
 }

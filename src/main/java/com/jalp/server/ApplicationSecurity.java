@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -36,12 +35,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 				// Add a filter to validate the tokens with every request
 				.addFilterAfter(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class)
 				// authorization requests config
-				.authorizeRequests()
-				// allow all who are accessing "auth" service
-				.antMatchers(HttpMethod.POST, "/token").permitAll()
-				// must be an admin if trying to access admin area (authentication is also
-				// required here)
-				.antMatchers("/gallery" + "/admin/**").hasRole("ADMIN")
+				.authorizeRequests().antMatchers("/token/**", "/error/**").permitAll()
 				// Any other request must be authenticated
 				.anyRequest().authenticated();
 	}
