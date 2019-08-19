@@ -60,3 +60,8 @@ asciidoctor {
 	inputs.dir snippetsDir
 	dependsOn test
 }
+
+coveralls {
+	saveAsFile = true
+	sendToCoveralls = false
+}
