@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.jalp.server.JwtAuthenticationControllerTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2019-08-22T10:20:27" hostname="DESKTOP-21PB4AM" time="1.31">
+  <properties/>
+  <testcase name="tokenReturnedForKnownUser()" classname="com.jalp.server.JwtAuthenticationControllerTest" time="0.735"/>
+  <testcase name="noTokenForKnownUserWithWrongPassword()" classname="com.jalp.server.JwtAuthenticationControllerTest" time="0.193"/>
+  <testcase name="noTokenForUnknownUser()" classname="com.jalp.server.JwtAuthenticationControllerTest" time="0.096"/>
+  <testcase name="accessGrantedWithValidToken()" classname="com.jalp.server.JwtAuthenticationControllerTest" time="0.283"/>
+  <system-out><![CDATA[2019-08-22 19:20:25.120  INFO 17684 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.jalp.server.JwtAuthenticationControllerTest], using SpringBootContextLoader
+2019-08-22 19:20:25.123  INFO 17684 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.jalp.server.JwtAuthenticationControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2019-08-22 19:20:25.123  INFO 17684 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.jalp.server.JwtAuthenticationControllerTest]: JwtAuthenticationControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2019-08-22 19:20:25.130  INFO 17684 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.jalp.server.Application for test class com.jalp.server.JwtAuthenticationControllerTest
+2019-08-22 19:20:25.132  INFO 17684 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2019-08-22 19:20:25.133  INFO 17684 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6bfa1394, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@3e1731f2, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@69ea1579, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@2fb7cde1, org.springframework.test.context.support.DirtiesContextTestExecutionListener@14ea0d30, org.springframework.test.context.transaction.TransactionalTestExecutionListener@13f526fe, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@2a8db824, org.springframework.test.context.event.EventPublishingTestExecutionListener@3b44a051, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@7f03a984, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@457ba24c, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@2707e5f, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@1c281068, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@7e85d5e0]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::             (v2.2.0.M5)
+
+2019-08-22 19:20:25.177  INFO 17684 --- [    Test worker] c.j.s.JwtAuthenticationControllerTest    : Starting JwtAuthenticationControllerTest on DESKTOP-21PB4AM with PID 17684 (started by teje in C:\projects\jalp\spring-boot-platform)
+2019-08-22 19:20:25.177  INFO 17684 --- [    Test worker] c.j.s.JwtAuthenticationControllerTest    : No active profile set, falling back to default profiles: default
+2019-08-22 19:20:25.422  INFO 17684 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-08-22 19:20:25.443  INFO 17684 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21ms. Found 2 repository interfaces.
+2019-08-22 19:20:25.668  INFO 17684 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-08-22 19:20:26.023  INFO 17684 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2019-08-22 19:20:26.043  INFO 17684 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-08-22 19:20:26.044  INFO 17684 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-08-22 19:20:26.237  INFO 17684 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-08-22 19:20:26.237  INFO 17684 --- [    Test worker] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1054 ms
+2019-08-22 19:20:26.319  WARN 17684 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-08-22 19:20:26.449  INFO 17684 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2019-08-22 19:20:26.460  INFO 17684 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2019-08-22 19:20:26.462  INFO 17684 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2019-08-22 19:20:26.462  INFO 17684 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2019-08-22 19:20:26.483  WARN 17684 --- [    Test worker] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.jalp.server.model.Authorities
+2019-08-22 19:20:26.483  WARN 17684 --- [    Test worker] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.jalp.server.model.Authorities
+Hibernate: drop table authorities if exists
+Hibernate: drop table questions if exists
+Hibernate: drop table users if exists
+Hibernate: drop table vocabulary if exists
+Hibernate: drop sequence if exists question_sequence
+Hibernate: create sequence question_sequence start with 1000 increment by 50
+Hibernate: create table authorities (username varchar(255) not null, authority varchar(255) not null, primary key (username, authority))
+Hibernate: create table questions (id bigint not null, description text, title varchar(100), primary key (id))
+Hibernate: create table users (username varchar(255) not null, enabled boolean, password varchar(255), primary key (username))
+Hibernate: create table vocabulary (id binary not null, translation varchar(255), value varchar(255), primary key (id))
+2019-08-22 19:20:26.558  INFO 17684 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-08-22 19:20:26.558  INFO 17684 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-08-22 19:20:26.774  INFO 17684 --- [    Test worker] o.s.s.p.JdbcUserDetailsManager           : No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+2019-08-22 19:20:27.135  INFO 17684 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@28c0b18b, org.springframework.security.web.context.SecurityContextPersistenceFilter@78850c05, org.springframework.security.web.header.HeaderWriterFilter@355b3fe9, org.springframework.security.web.authentication.logout.LogoutFilter@2068b38c, com.jalp.server.JwtRequestFilter@3b4e6d9a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@63540ace, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@f1cd53a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1bf08d7d, org.springframework.security.web.session.SessionManagementFilter@4cfc64f9, org.springframework.security.web.access.ExceptionTranslationFilter@2bd61388, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@77ede31b]
+2019-08-22 19:20:27.210  INFO 17684 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-22 19:20:27.763  INFO 17684 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 54923 (http) with context path ''
+2019-08-22 19:20:27.764  INFO 17684 --- [    Test worker] c.j.s.JwtAuthenticationControllerTest    : Started JwtAuthenticationControllerTest in 2.626 seconds (JVM running for 12.281)
+2019-08-22 19:20:28.039  INFO 17684 --- [o-auto-1-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-08-22 19:20:28.039  INFO 17684 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-08-22 19:20:28.058  INFO 17684 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 18 ms
+2019-08-22 19:20:28.603  WARN 17684 --- [o-auto-1-exec-2] o.z.p.spring.web.advice.AdviceTrait      : Unauthorized: Ungültige Anmeldedaten
+about:blank{401, Unauthorized, Ungültige Anmeldedaten}
+2019-08-22 19:20:28.790  WARN 17684 --- [o-auto-1-exec-3] o.z.p.spring.web.advice.AdviceTrait      : Unauthorized: Ungültige Anmeldedaten
+about:blank{401, Unauthorized, Ungültige Anmeldedaten}
+2019-08-22 19:20:28.913 ERROR 17684 --- [o-auto-1-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+
+org.zalando.problem.spring.web.advice.validation.ConstraintViolationProblem: Constraint Violation
+	at com.jalp.server.JwtRequestFilter.doFilterInternal(JwtRequestFilter.java:43) ~[main/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:118) ~[spring-web-5.2.0.RC1.jar:5.2.0.RC1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.0.M4.jar:5.2.0.M4]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.2.0.M4.jar:5.2.0.M4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.0.M4.jar:5.2.0.M4]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:93) ~[spring-security-web-5.2.0.M4.jar:5.2.0.M4]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:78) ~[spring-security-web-5.2.0.M4.jar:5.2.0.M4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:118) ~[spring-web-5.2.0.RC1.jar:5.2.0.RC1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.0.M4.jar:5.2.0.M4]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.2.0.M4.jar:5.2.0.M4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.0.M4.jar:5.2.0.M4]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) ~[spring-security-web-5.2.0.M4.jar:5.2.0.M4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:118) ~[spring-web-5.2.0.RC1.jar:5.2.0.RC1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.0.M4.jar:5.2.0.M4]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.2.0.M4.jar:5.2.0.M4]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.2.0.M4.jar:5.2.0.M4]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357) ~[spring-web-5.2.0.RC1.jar:5.2.0.RC1]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270) ~[spring-web-5.2.0.RC1.jar:5.2.0.RC1]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-5.2.0.RC1.jar:5.2.0.RC1]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:118) ~[spring-web-5.2.0.RC1.jar:5.2.0.RC1]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92) ~[spring-web-5.2.0.RC1.jar:5.2.0.RC1]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:118) ~[spring-web-5.2.0.RC1.jar:5.2.0.RC1]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.2.0.RC1.jar:5.2.0.RC1]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:118) ~[spring-web-5.2.0.RC1.jar:5.2.0.RC1]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at java.base/java.lang.Thread.run(Thread.java:835) ~[na:na]
+
+2019-08-22 19:20:28.952  WARN 17684 --- [o-auto-1-exec-5] o.z.p.spring.web.advice.AdviceTrait      : Bad Request: Constraint Violation
+<400,{"type":"https://zalando.github.io/problem/constraint-violation","status":400,"violations":[{"field":"Request Header","message":"Authorization header missing"}],"title":"Constraint Violation"},[X-Content-Type-Options:"nosniff", X-XSS-Protection:"1; mode=block", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY", Content-Type:"application/problem+json;charset=UTF-8", Transfer-Encoding:"chunked", Date:"Thu, 22 Aug 2019 10:20:28 GMT", Connection:"close"]>
+<200,[Lcom.jalp.server.model.Vocable;@3d2dba82,[X-Content-Type-Options:"nosniff", X-XSS-Protection:"1; mode=block", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY", Content-Type:"application/json;charset=UTF-8", Transfer-Encoding:"chunked", Date:"Thu, 22 Aug 2019 10:20:28 GMT"]>
+]]></system-out>
+  <system-err><![CDATA[Although it still works, registering a Representation through a file named 'org.assertj.core.presentation.Representation' in the META-INF/services directory is deprecated.
+The proper way of providing a Representation is to register a Configuration as described in the documentation (a Configuration allowing to provide a Representation and other AssertJ configuration elements)
+]]></system-err>
+</testsuite>

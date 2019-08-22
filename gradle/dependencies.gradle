@@ -1,0 +1,21 @@
+ext {
+  versions = [
+    guava: '28.0-jre',
+	spring: '2.2.0.M5'
+  ]
+  testVersions = [
+  ]
+  pluginVersions = [
+    coveralls: '2.8.4',
+    jacoco: '0.8.4',
+  ]
+  libraries = [
+    guava: "com.google.guava:guava:${versions.guava}",
+  ]
+  testLibraries = [
+  ]
+  gradlePlugins = [
+    coveralls: "gradle.plugin.com.github.kt3k.coveralls:coveralls-gradle-plugin:${pluginVersions.coveralls}",
+	spring: "org.springframework.boot:spring-boot-gradle-plugin:${versions.spring}",	
+  ]
+}
