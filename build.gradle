@@ -44,6 +44,8 @@ subprojects {
     test {
 		useJUnitPlatform()
 	}
+	
+	apply from: file("$rootProject.projectDir/gradle/heroku/stage.gradle")
 }
 
 jacocoTestReport {

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.jalp.model.ApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-08-22T10:20:13" hostname="DESKTOP-21PB4AM" time="0.026">
-  <properties/>
-  <testcase name="firstTest()" classname="com.jalp.model.ApplicationTests" time="0.026"/>
-  <system-out><![CDATA[Test started
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

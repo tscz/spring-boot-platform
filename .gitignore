@@ -6,6 +6,9 @@ HELP.md
 
 /target/
 /bin/
+bin
+build
+
 
 ### STS ###
 .apt_generated

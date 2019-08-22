@@ -11,5 +11,5 @@ deploy:
     production: jalp-production
 after_success:
   # Manual upload of coverage report, see https://github.com/kt3k/coveralls-gradle-plugin/issues/85
-  - ./gradlew jacocoTestReport coveralls
+  - ./gradlew jacocoRootReport coveralls
   - curl -F 'json_file=@build/coveralls/report.json' 'https://coveralls.io/api/v1/jobs'
