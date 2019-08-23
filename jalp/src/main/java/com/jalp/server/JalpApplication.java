@@ -1,18 +1,15 @@
 package com.jalp.server;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 import com.github.tscz.spring.platform.Application;
-import com.github.tscz.spring.platform.config.ApplicationConfig;
+import com.github.tscz.spring.platform.SpringBootPlatformApplication;
 
-@SpringBootApplication
-@EnableConfigurationProperties(ApplicationConfig.class)
+@SpringBootPlatformApplication
 public class JalpApplication extends Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(JalpApplication.class, args);
 	}
 
 }

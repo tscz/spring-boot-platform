@@ -1,4 +1,4 @@
-package com.github.tscz.spring.platform;
+package com.jalp.server;
 
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.json;
@@ -7,6 +7,7 @@ import static org.mockito.BDDMockito.given;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Map;
 
 import org.apache.http.entity.ContentType;
 import org.junit.jupiter.api.Test;
@@ -15,10 +16,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.zalando.problem.spring.web.advice.validation.ConstraintViolationProblem;
 
 import com.github.tscz.spring.platform.jwt.JwtRequest;
@@ -37,8 +40,14 @@ public class JalpApplicationTests {
 	@MockBean
 	private VocableRepository vocableRepository;
 
+	@Autowired
+	private ApplicationContext applicationContext;
+
 	@Test
 	public void contextLoads() {
+
+		Map<String, Object> beans = applicationContext.getBeansWithAnnotation(Controller.class);
+		beans.forEach((name, bean) -> System.out.println(name));
 	}
 
 	@Test
