@@ -9,8 +9,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'net.javacrumbs.json-unit:json-unit-assertj:2.8.0'
+	testImplementation 'org.apache.httpcomponents:httpclient'
 }
 
 springBoot {
-    mainClassName = 'com.jalp.model.JalpApplication'
+    mainClassName = 'com.jalp.server.JalpApplication'
 }
