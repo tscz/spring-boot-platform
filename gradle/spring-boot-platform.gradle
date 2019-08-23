@@ -1,0 +1,20 @@
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+dependencies {	
+	implementation libraries.guava
+	implementation libraries.jjwt_api
+	implementation libraries.problem
+	implementation libraries.spring_starter_jpa
+	implementation libraries.spring_starter_web
+	implementation libraries.spring_starter_security
+
+	runtimeOnly libraries.jjwt_runtime
+	runtimeOnly libraries.postgres
+	
+	testImplementation testLibraries.spring_starter_test
+	testImplementation testLibraries.httpclient
+	testImplementation testLibraries.h2
+	testImplementation testLibraries.jsonassert
+}

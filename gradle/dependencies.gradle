@@ -1,18 +1,38 @@
 ext {
   versions = [
-    guava: '28.0-jre',
-	spring: '2.2.0.M5'
+    guava: "28.0-jre",
+  	jjwt: "0.10.7",
+  	postgres: "42.2.6",
+  	problem: "0.23.0",
+	spring: "2.2.0.M5",
   ]
   testVersions = [
+  	jsonassert: "2.8.0",
+  	h2: "1.4.199",
+  	httpclient: "4.5.9",
   ]
   pluginVersions = [
-    coveralls: '2.8.4',
-    jacoco: '0.8.4',
+    coveralls: "2.8.4",
+    jacoco: "0.8.4",
   ]
   libraries = [
     guava: "com.google.guava:guava:${versions.guava}",
+    jjwt_api: "io.jsonwebtoken:jjwt-api:${versions.jjwt}",
+    jjwt_runtime: [
+    	"io.jsonwebtoken:jjwt-impl:${versions.jjwt}",
+    	"io.jsonwebtoken:jjwt-jackson:${versions.jjwt}",
+    ],
+    postgres: "org.postgresql:postgresql:${versions.postgres}",
+    problem: "org.zalando:problem-spring-web:${versions.problem}",
+    spring_starter_jpa: "org.springframework.boot:spring-boot-starter-data-jpa",
+    spring_starter_security: "org.springframework.boot:spring-boot-starter-security",
+    spring_starter_web: "org.springframework.boot:spring-boot-starter-web",
   ]
   testLibraries = [
+    h2: "com.h2database:h2:${testVersions.h2}",
+    httpclient: "org.apache.httpcomponents:httpclient:${testVersions.httpclient}",
+    jsonassert: "net.javacrumbs.json-unit:json-unit-assertj:${testVersions.jsonassert}",
+    spring_starter_test: "org.springframework.boot:spring-boot-starter-test",
   ]
   gradlePlugins = [
     coveralls: "gradle.plugin.com.github.kt3k.coveralls:coveralls-gradle-plugin:${pluginVersions.coveralls}",
