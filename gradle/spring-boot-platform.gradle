@@ -13,8 +13,9 @@ dependencies {
 	runtimeOnly libraries.jjwt_runtime
 	runtimeOnly libraries.postgres
 	
-	testImplementation testLibraries.spring_starter_test
 	testImplementation testLibraries.httpclient
 	testImplementation testLibraries.h2
 	testImplementation testLibraries.jsonassert
+	testImplementation testLibraries.spring_starter_test
+	testImplementation testLibraries.spring_security_test
 }

@@ -16,7 +16,7 @@ import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport;
 
-import com.github.tscz.spring.platform.jwt.JwtRequestFilter;
+import com.github.tscz.spring.platform.jwt.JwtFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -60,8 +60,8 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 	}
 
 	@Bean
-	public JwtRequestFilter authenticationTokenFilterBean() throws Exception {
-		return new JwtRequestFilter();
+	public JwtFilter authenticationTokenFilterBean() throws Exception {
+		return new JwtFilter();
 	}
 
 }

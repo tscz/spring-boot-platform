@@ -32,6 +32,7 @@ ext {
     h2: "com.h2database:h2:${testVersions.h2}",
     httpclient: "org.apache.httpcomponents:httpclient:${testVersions.httpclient}",
     jsonassert: "net.javacrumbs.json-unit:json-unit-assertj:${testVersions.jsonassert}",
+    spring_security_test: "org.springframework.security:spring-security-test",
     spring_starter_test: "org.springframework.boot:spring-boot-starter-test",
   ]
   gradlePlugins = [

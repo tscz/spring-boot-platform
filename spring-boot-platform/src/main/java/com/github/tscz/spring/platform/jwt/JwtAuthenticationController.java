@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,15 +20,11 @@ public class JwtAuthenticationController {
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
 
-	@Autowired
-	private JdbcUserDetailsManager userDetailsService;
-
 	@RequestMapping(value = "/token", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
-		var userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
-		var token = jwtTokenUtil.generateToken(userDetails);
+		var token = jwtTokenUtil.generateToken(authenticationRequest.getUsername());
 
 		return ResponseEntity.ok(new JwtResponse(token));
 	}

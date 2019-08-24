@@ -19,9 +19,7 @@ import org.zalando.problem.Status;
 import org.zalando.problem.spring.web.advice.validation.ConstraintViolationProblem;
 import org.zalando.problem.spring.web.advice.validation.Violation;
 
-import io.jsonwebtoken.ExpiredJwtException;
-
-public class JwtRequestFilter extends OncePerRequestFilter {
+public class JwtFilter extends OncePerRequestFilter {
 
 	@Autowired
 	private JdbcUserDetailsManager jwtUserDetailsService;
@@ -34,8 +32,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 
 		final String requestTokenHeader = request.getHeader("Authorization");
-		String username = null;
-		String jwtToken = null;
 
 		if (requestTokenHeader == null) {
 			SecurityContextHolder.clearContext();
@@ -49,30 +45,19 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 					Arrays.asList(new Violation("Request Header", "JWT Token does not begin with Bearer String")));
 		}
 
-		jwtToken = requestTokenHeader.substring(7);
+		var jwtToken = requestTokenHeader.substring(7);
 
-		try {
-			username = jwtTokenUtil.getUsernameFromToken(jwtToken);
-		} catch (IllegalArgumentException e) {
-			SecurityContextHolder.clearContext();
-			throw new ConstraintViolationProblem(Status.BAD_REQUEST,
-					Arrays.asList(new Violation("Request Header", "Unable to get JWT Token")));
-		} catch (ExpiredJwtException e) {
-			SecurityContextHolder.clearContext();
-			throw new ConstraintViolationProblem(Status.BAD_REQUEST,
-					Arrays.asList(new Violation("Request Header", "JWT Token has expired")));
-		}
+		var claims = jwtTokenUtil.getAllClaimsFromToken(jwtToken);
+
+		var username = claims.getSubject();
 
 		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 			UserDetails userDetails = this.jwtUserDetailsService.loadUserByUsername(username);
 
-			if (jwtTokenUtil.validateToken(jwtToken, userDetails)) {
-				var usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null,
-						userDetails.getAuthorities());
-				usernamePasswordAuthenticationToken
-						.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-				SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-			}
+			var authToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+			authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+			SecurityContextHolder.getContext().setAuthentication(authToken);
+
 		}
 		chain.doFilter(request, response);
 	}
