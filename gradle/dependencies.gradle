@@ -4,7 +4,8 @@ ext {
   	jjwt: "0.10.7",
   	postgres: "42.2.6",
   	problem: "0.23.0",
-	spring: "2.2.0.M5",
+	spring: "5.2.0.M4",
+	springboot: "2.2.0.M5",
   ]
   testVersions = [
   	jsonassert: "2.8.0",
@@ -24,6 +25,11 @@ ext {
     ],
     postgres: "org.postgresql:postgresql:${versions.postgres}",
     problem: "org.zalando:problem-spring-web:${versions.problem}",
+	spring_security_oauth: [
+    	"org.springframework.security:spring-security-oauth2-core:${versions.spring}",
+    	"org.springframework.security:spring-security-oauth2-client:${versions.spring}",
+    	"org.springframework.security:spring-security-oauth2-jose:${versions.spring}",
+    ],
     spring_starter_jpa: "org.springframework.boot:spring-boot-starter-data-jpa",
     spring_starter_security: "org.springframework.boot:spring-boot-starter-security",
     spring_starter_web: "org.springframework.boot:spring-boot-starter-web",
@@ -37,6 +43,6 @@ ext {
   ]
   gradlePlugins = [
     coveralls: "gradle.plugin.com.github.kt3k.coveralls:coveralls-gradle-plugin:${pluginVersions.coveralls}",
-	spring: "org.springframework.boot:spring-boot-gradle-plugin:${versions.spring}",	
+	springboot: "org.springframework.boot:spring-boot-gradle-plugin:${versions.springboot}",	
   ]
 }

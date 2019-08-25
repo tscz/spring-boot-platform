@@ -6,6 +6,7 @@ dependencies {
 	implementation libraries.guava
 	implementation libraries.jjwt_api
 	implementation libraries.problem
+	implementation libraries.spring_security_oauth
 	implementation libraries.spring_starter_jpa
 	implementation libraries.spring_starter_web
 	implementation libraries.spring_starter_security
