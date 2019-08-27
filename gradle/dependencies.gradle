@@ -5,7 +5,7 @@ ext {
   	postgres: "42.2.6",
   	problem: "0.23.0",
 	spring: "5.2.0.M4",
-	springboot: "2.2.0.M5",
+	spring_boot: "2.2.0.M5",
   ]
   testVersions = [
   	jsonassert: "2.8.0",
@@ -13,6 +13,7 @@ ext {
   	httpclient: "4.5.9",
   ]
   pluginVersions = [
+    asciidoc: "2.3.0",
     coveralls: "2.8.4",
     jacoco: "0.8.4",
   ]
@@ -30,19 +31,20 @@ ext {
     	"org.springframework.security:spring-security-oauth2-client:${versions.spring}",
     	"org.springframework.security:spring-security-oauth2-jose:${versions.spring}",
     ],
-    spring_starter_jpa: "org.springframework.boot:spring-boot-starter-data-jpa",
-    spring_starter_security: "org.springframework.boot:spring-boot-starter-security",
-    spring_starter_web: "org.springframework.boot:spring-boot-starter-web",
+    spring_boot_starter_jpa: "org.springframework.boot:spring-boot-starter-data-jpa",
+    spring_boot_starter_security: "org.springframework.boot:spring-boot-starter-security",
+    spring_boot_starter_web: "org.springframework.boot:spring-boot-starter-web",
   ]
   testLibraries = [
     h2: "com.h2database:h2:${testVersions.h2}",
     httpclient: "org.apache.httpcomponents:httpclient:${testVersions.httpclient}",
     jsonassert: "net.javacrumbs.json-unit:json-unit-assertj:${testVersions.jsonassert}",
     spring_security_test: "org.springframework.security:spring-security-test",
-    spring_starter_test: "org.springframework.boot:spring-boot-starter-test",
+    spring_boot_starter_test: "org.springframework.boot:spring-boot-starter-test",
   ]
   gradlePlugins = [
+	asciidoc: "org.asciidoctor:asciidoctor-gradle-jvm:${pluginVersions.asciidoc}",
     coveralls: "gradle.plugin.com.github.kt3k.coveralls:coveralls-gradle-plugin:${pluginVersions.coveralls}",
-	springboot: "org.springframework.boot:spring-boot-gradle-plugin:${versions.springboot}",	
+	spring_boot: "org.springframework.boot:spring-boot-gradle-plugin:${versions.spring_boot}",	
   ]
 }

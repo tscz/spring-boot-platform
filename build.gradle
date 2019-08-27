@@ -1,6 +1,8 @@
 apply plugin: 'com.github.kt3k.coveralls'
 apply plugin: 'jacoco'
 apply plugin: 'java'
+apply plugin: 'org.asciidoctor.jvm.convert'
+apply plugin: 'org.asciidoctor.jvm.pdf'
 
 buildscript {
   apply from: "${rootDir}/gradle/dependencies.gradle"
@@ -79,4 +81,15 @@ coveralls {
   	saveAsFile = true
 	sendToCoveralls = false
     sourceDirs = subprojects.sourceSets.main.allSource.srcDirs.flatten()
+}
+
+
+asciidoctor {
+	outputOptions {
+	        backends = ['html5', 'pdf']
+	    }
+
+	options doctype: 'book'
+	attributes \
+		'toc' : 'left' 
 }
