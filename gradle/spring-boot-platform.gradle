@@ -9,7 +9,6 @@ dependencies {
 	implementation libraries.jjwt_api
 	implementation libraries.jjwt_runtime
 	implementation libraries.problem
-	implementation libraries.spring_security_oauth
 	implementation libraries.spring_boot_starter_jpa
 	implementation libraries.spring_boot_starter_web
 	implementation libraries.spring_boot_starter_security

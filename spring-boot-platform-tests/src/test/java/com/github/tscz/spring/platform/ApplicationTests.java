@@ -1,4 +1,4 @@
-package com.jalp.server;
+package com.github.tscz.spring.platform;
 
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.json;
@@ -22,23 +22,24 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.test.annotation.DirtiesContext;
 import org.zalando.problem.spring.web.advice.validation.ConstraintViolationProblem;
 
 import com.github.tscz.spring.platform.jwt.JwtRequest;
 import com.github.tscz.spring.platform.jwt.JwtResponse;
-import com.jalp.server.vocable.Vocable;
-import com.jalp.server.vocable.VocableRepository;
+import com.github.tscz.spring.platform.testentity.TestEntity;
+import com.github.tscz.spring.platform.testentity.TestEntityRepository;
 
 import net.javacrumbs.jsonunit.core.Option;
 
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class JalpApplicationTests {
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes = TestApplication.class)
+public class ApplicationTests {
 
 	@Autowired
 	private TestRestTemplate restTemplate;
 
 	@MockBean
-	private VocableRepository vocableRepository;
+	private TestEntityRepository testEntityRepository;
 
 	@Autowired
 	private ApplicationContext applicationContext;
@@ -50,14 +51,14 @@ public class JalpApplicationTests {
 		beans.forEach((name, bean) -> System.out.println(name));
 	}
 
-	@Test
+	//@Test
 	public void accessGrantedWithValidToken() {
-		var vocable = new Vocable();
-		vocable.setValue("Value");
-		vocable.setTranslation("Translation");
-		var expectedBody = Arrays.asList(vocable);
+		var testEntity = new TestEntity();
+		testEntity.setTitle("Title");
+		testEntity.setDescription("Description");
+		var expectedBody = Arrays.asList(testEntity);
 
-		given(vocableRepository.findAll()).willReturn(expectedBody);
+		given(testEntityRepository.findAll()).willReturn(expectedBody);
 
 		// Retrieve bearer token
 		var jwtRequest = new JwtRequest("admin", "password");
@@ -65,17 +66,15 @@ public class JalpApplicationTests {
 		var token = jwtResponse.getBody().getToken();
 		assertThat(jwtResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
 		assertThat(token).isNotEmpty();
-
+		
 		// Request without bearer token
 		HttpHeaders headers = new HttpHeaders();
 		headers.add(HttpHeaders.CONTENT_TYPE, ContentType.APPLICATION_JSON.toString());
 		var response = restTemplate.exchange(//
-				"/vocabulary", //
+				"/testEntity", //
 				HttpMethod.GET, //
 				new HttpEntity<>(headers), //
 				String.class);
-
-		System.out.println(response);
 
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
 		assertThatJson(response.getBody())//
@@ -92,10 +91,10 @@ public class JalpApplicationTests {
 
 		headers.add(HttpHeaders.AUTHORIZATION, "Bearer " + token);
 		var response2 = restTemplate.exchange(//
-				"/vocabulary", //
+				"/testEntities", //
 				HttpMethod.GET, //
 				new HttpEntity<>(headers), //
-				Vocable[].class);
+				TestEntity[].class);
 
 		System.out.println(response2);
 

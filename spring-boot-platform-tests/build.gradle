@@ -5,5 +5,5 @@ dependencies {
 }
 
 springBoot {
-    mainClassName = 'com.jalp.server.JalpApplication'
+	mainClassName = 'com.github.tscz.spring.platform.TestApplication'
 }

@@ -1,15 +1,14 @@
-package com.jalp.server;
+package com.github.tscz.spring.platform;
 
 import org.springframework.boot.SpringApplication;
 
-import com.github.tscz.spring.platform.Application;
 import com.github.tscz.spring.platform.SpringBootPlatformApplication;
 
 @SpringBootPlatformApplication
-public class JalpApplication extends Application {
+public class TestApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(JalpApplication.class, args);
+		SpringApplication.run(TestApplication.class, args);
 	}
 
 }

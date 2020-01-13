@@ -1,4 +1,4 @@
-package com.jalp.server.question;
+package com.github.tscz.spring.platform.testentity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,11 +10,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "questions")
-public class Question {
+@Table(name = "testEntity")
+public class TestEntity {
 	@Id
-	@GeneratedValue(generator = "question_generator")
-	@SequenceGenerator(name = "question_generator", sequenceName = "question_sequence", initialValue = 1000)
+	@GeneratedValue(generator = "testEntity_generator")
+	@SequenceGenerator(name = "testEntity_generator", sequenceName = "testEntity_sequence", initialValue = 1000)
 	private Long id;
 
 	public Long getId() {
@@ -50,7 +50,7 @@ public class Question {
 
 	@Override
 	public String toString() {
-		return "Question [id=" + id + ", title=" + title + ", description=" + description + "]";
+		return "Testentity [id=" + id + ", title=" + title + ", description=" + description + "]";
 	}
 
 }

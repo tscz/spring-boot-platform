@@ -13,7 +13,7 @@ import org.zalando.problem.Problem;
 import com.github.tscz.spring.platform.jwt.JwtRequest;
 import com.github.tscz.spring.platform.jwt.JwtResponse;
 
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes = Application.class)
 public class JwtAuthenticationControllerTest {
 
 	@Autowired

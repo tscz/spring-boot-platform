@@ -4,13 +4,13 @@ ext {
   	jjwt: "0.10.7",
   	postgres: "42.2.6",
   	problem: "0.23.0",
-	spring: "5.2.0.M4",
-	spring_boot: "2.2.0.M5",
+	spring: "5.2.2.RELEASE",
+	spring_boot: "2.2.2.RELEASE",
   ]
   testVersions = [
   	jsonassert: "2.8.0",
-  	h2: "1.4.199",
-  	httpclient: "4.5.9",
+  	h2: "1.4.200",
+  	httpclient: "4.5.10",
   ]
   pluginVersions = [
     asciidoc: "2.3.0",
@@ -26,11 +26,6 @@ ext {
     ],
     postgres: "org.postgresql:postgresql:${versions.postgres}",
     problem: "org.zalando:problem-spring-web:${versions.problem}",
-	spring_security_oauth: [
-    	"org.springframework.security:spring-security-oauth2-core:${versions.spring}",
-    	"org.springframework.security:spring-security-oauth2-client:${versions.spring}",
-    	"org.springframework.security:spring-security-oauth2-jose:${versions.spring}",
-    ],
     spring_boot_starter_jpa: "org.springframework.boot:spring-boot-starter-data-jpa",
     spring_boot_starter_security: "org.springframework.boot:spring-boot-starter-security",
     spring_boot_starter_web: "org.springframework.boot:spring-boot-starter-web",

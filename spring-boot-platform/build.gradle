@@ -1,5 +1,9 @@
 apply from: "${rootDir}/gradle/spring-boot-platform.gradle"
 
+bootJar {
+  enabled = false
+}
+
 jar {
-  enabled=true
+  enabled = true
 }

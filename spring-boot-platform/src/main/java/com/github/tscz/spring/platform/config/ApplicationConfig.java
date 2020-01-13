@@ -14,7 +14,7 @@ import com.google.common.base.Preconditions;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.WeakKeyException;
 
-@ConfigurationProperties(prefix = "com.jalp")
+@ConfigurationProperties(prefix = "com.github.tscz.spring.platform")
 @Validated
 public class ApplicationConfig {
 

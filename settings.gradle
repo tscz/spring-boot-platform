@@ -1,4 +1,4 @@
-rootProject.name = 'jalp-complete'
+rootProject.name = 'spring-boot-platform-complete'
 
 include 'spring-boot-platform'
-include 'jalp'
+include 'spring-boot-platform-tests'
