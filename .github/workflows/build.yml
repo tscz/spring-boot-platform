@@ -22,3 +22,9 @@ jobs:
       run: |
           ./gradlew jacocoRootReport coveralls
           curl -F 'json_file=@build/coveralls/report.json' 'https://coveralls.io/api/v1/jobs'
+    - name: Deploy to Github Package Registry
+      env:
+        GITHUB_USERNAME: x-access-token
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run:
+        gradle publish
