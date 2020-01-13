@@ -1,7 +1,7 @@
 apply from: "${rootDir}/gradle/spring-boot-platform.gradle"
 
 dependencies {
-	compile project(':spring-boot-platform')
+	implementation project(':spring-boot-platform')
 }
 
 springBoot {

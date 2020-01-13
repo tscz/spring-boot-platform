@@ -9,8 +9,8 @@ buildscript {
 
   repositories {
     maven { url "https://repo.spring.io/plugins-release" }
-    maven { url "http://repo.spring.io/libs-release" }
-    maven { url "http://repo.spring.io/libs-milestone" }
+    maven { url "https://repo.spring.io/libs-release" }
+    maven { url "https://repo.spring.io/libs-milestone" }
     maven { url "https://plugins.gradle.org/m2/" }
 	gradlePluginPortal()
     mavenCentral()
