@@ -3,12 +3,6 @@ jdk:
   - openjdk12
 script:
   - ./gradlew build --info
-deploy:
-  provider: heroku
-  api_key: $API_KEY
-  app:
-    master: jalp-staging
-    production: jalp-production
 after_success:
   # Manual upload of coverage report, see https://github.com/kt3k/coveralls-gradle-plugin/issues/85
   - ./gradlew jacocoRootReport coveralls
