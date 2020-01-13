@@ -29,3 +29,8 @@ bootJar {
 jar {
   enabled = true
 }
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
