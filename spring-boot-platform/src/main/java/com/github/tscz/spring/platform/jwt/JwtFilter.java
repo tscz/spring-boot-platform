@@ -16,8 +16,8 @@ import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.zalando.problem.Status;
-import org.zalando.problem.spring.web.advice.validation.ConstraintViolationProblem;
-import org.zalando.problem.spring.web.advice.validation.Violation;
+import org.zalando.problem.violations.ConstraintViolationProblem;
+import org.zalando.problem.violations.Violation;
 
 public class JwtFilter extends OncePerRequestFilter {
 

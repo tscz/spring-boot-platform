@@ -2,8 +2,6 @@ package com.github.tscz.spring.platform;
 
 import org.springframework.boot.SpringApplication;
 
-import com.github.tscz.spring.platform.SpringBootPlatformApplication;
-
 @SpringBootPlatformApplication
 public class Application {
 

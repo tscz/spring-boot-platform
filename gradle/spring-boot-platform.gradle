@@ -12,6 +12,7 @@ dependencies {
 	implementation libraries.spring_boot_starter_jpa
 	implementation libraries.spring_boot_starter_web
 	implementation libraries.spring_boot_starter_security
+	implementation libraries.spring_boot_starter_validation
 
 	runtimeOnly libraries.postgres
 	

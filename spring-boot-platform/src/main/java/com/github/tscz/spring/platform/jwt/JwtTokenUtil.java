@@ -19,7 +19,7 @@ public class JwtTokenUtil {
 	public ApplicationConfig config;
 
 	public Claims getAllClaimsFromToken(String token) {
-		return Jwts.parser().setSigningKey(config.getJwtSecret()).parseClaimsJws(token).getBody();
+		return Jwts.parserBuilder().setSigningKey(config.getJwtSecret()).build().parseClaimsJws(token).getBody();
 	}
 
 	public String generateToken(String username) {

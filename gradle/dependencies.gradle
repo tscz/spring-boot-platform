@@ -1,21 +1,20 @@
 ext {
   versions = [
-    guava: "28.0-jre",
-  	jjwt: "0.10.7",
-  	postgres: "42.2.6",
-  	problem: "0.23.0",
-	spring: "5.2.2.RELEASE",
-	spring_boot: "2.2.2.RELEASE",
+    guava: "29.0-jre",
+  	jjwt: "0.11.2",
+  	postgres: "42.2.14",
+  	problem: "0.25.2",
+	spring: "5.2.7.RELEASE",
+	spring_boot: "2.3.1.RELEASE",
   ]
   testVersions = [
   	jsonassert: "2.8.0",
   	h2: "1.4.200",
-  	httpclient: "4.5.10",
+  	httpclient: "4.5.12",
   ]
   pluginVersions = [
-    asciidoc: "2.3.0",
-    coveralls: "2.8.4",
-    jacoco: "0.8.4",
+    asciidoc: "3.2.0",
+    coveralls: "2.10.1"
   ]
   libraries = [
     guava: "com.google.guava:guava:${versions.guava}",
@@ -29,6 +28,7 @@ ext {
     spring_boot_starter_jpa: "org.springframework.boot:spring-boot-starter-data-jpa",
     spring_boot_starter_security: "org.springframework.boot:spring-boot-starter-security",
     spring_boot_starter_web: "org.springframework.boot:spring-boot-starter-web",
+    spring_boot_starter_validation: "org.springframework.boot:spring-boot-starter-validation",
   ]
   testLibraries = [
     h2: "com.h2database:h2:${testVersions.h2}",
@@ -39,7 +39,8 @@ ext {
   ]
   gradlePlugins = [
 	asciidoc: "org.asciidoctor:asciidoctor-gradle-jvm:${pluginVersions.asciidoc}",
-    coveralls: "gradle.plugin.com.github.kt3k.coveralls:coveralls-gradle-plugin:${pluginVersions.coveralls}",
+	asciidoc_pdf: "org.asciidoctor:asciidoctor-gradle-jvm-pdf:${pluginVersions.asciidoc}",
+  coveralls: "gradle.plugin.org.kt3k.gradle.plugin:coveralls-gradle-plugin:${pluginVersions.coveralls}",
 	spring_boot: "org.springframework.boot:spring-boot-gradle-plugin:${versions.spring_boot}",	
   ]
 }
