@@ -1,7 +1,11 @@
-apply from: "${rootDir}/gradle/spring-boot-platform.gradle"
+plugins {
+    id "java"
+    id "org.springframework.boot"
+	id "io.spring.dependency-management"
+}
 
 dependencies {
-	implementation project(':spring-boot-platform')
+	implementation project(':spring-boot-platform-starter')
 }
 
 springBoot {

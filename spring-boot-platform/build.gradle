@@ -1,5 +1,31 @@
 plugins {
-    id("maven-publish")
+    id "maven-publish"
+    id "java"
+    id "org.springframework.boot"
+    id "io.spring.dependency-management"
+    id "org.asciidoctor.jvm.convert"
+}
+
+dependencies {
+	
+	implementation libraries.guava
+	implementation libraries.jjwt_api
+	implementation libraries.jjwt_runtime
+	implementation libraries.problem
+	implementation libraries.spring_boot_starter_jpa
+	implementation libraries.spring_boot_starter_web
+	implementation libraries.spring_boot_starter_security
+	implementation libraries.spring_boot_starter_validation
+
+	implementation libraries.postgres
+	
+	testImplementation testLibraries.httpclient
+	testImplementation testLibraries.h2
+	testImplementation testLibraries.jsonassert
+	testImplementation testLibraries.spring_boot_starter_test
+    testImplementation testLibraries.spring_rest_doc
+	testImplementation testLibraries.spring_security_test
+
 }
 
 publishing {
@@ -20,7 +46,7 @@ publishing {
     }
 }
 
-apply from: "${rootDir}/gradle/spring-boot-platform.gradle"
+
 
 bootJar {
   enabled = false

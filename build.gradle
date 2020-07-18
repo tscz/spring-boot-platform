@@ -3,18 +3,18 @@ apply plugin: 'jacoco'
 apply plugin: 'java'
 apply plugin: 'org.asciidoctor.jvm.convert'
 apply plugin: 'org.asciidoctor.jvm.pdf'
+apply plugin: 'io.spring.dependency-management'
 
 buildscript {
   apply from: "${rootDir}/gradle/dependencies.gradle"
 
   repositories {
+	gradlePluginPortal()
+    jcenter()
     maven { url "https://repo.spring.io/plugins-release" }
     maven { url "https://repo.spring.io/libs-release" }
     maven { url "https://repo.spring.io/libs-milestone" }
-    maven { url "https://plugins.gradle.org/m2/" }
-	gradlePluginPortal()
-    mavenCentral()
-    jcenter()
+
   }
 
   dependencies {
@@ -33,7 +33,7 @@ allprojects {
 
 subprojects {
 	group = 'com.github.tscz.spring.platform'
-	version = '0.0.5'
+	version = '0.0.6'
 	
 	apply plugin: "java"
 	apply plugin: "jacoco"

@@ -36,6 +36,7 @@ ext {
     jsonassert: "net.javacrumbs.json-unit:json-unit-assertj:${testVersions.jsonassert}",
     spring_security_test: "org.springframework.security:spring-security-test",
     spring_boot_starter_test: "org.springframework.boot:spring-boot-starter-test",
+    spring_rest_doc: "org.springframework.restdocs:spring-restdocs-mockmvc" 
   ]
   gradlePlugins = [
 	asciidoc: "org.asciidoctor:asciidoctor-gradle-jvm:${pluginVersions.asciidoc}",
