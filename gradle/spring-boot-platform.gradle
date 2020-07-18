@@ -14,13 +14,13 @@ dependencies {
 	implementation libraries.spring_boot_starter_security
 	implementation libraries.spring_boot_starter_validation
 
-	runtimeOnly libraries.postgres
+	implementation libraries.postgres
 	
-	testImplementation testLibraries.httpclient
-	testImplementation testLibraries.h2
-	testImplementation testLibraries.jsonassert
-	testImplementation testLibraries.spring_boot_starter_test
-	testImplementation testLibraries.spring_security_test
+	implementation testLibraries.httpclient
+	implementation testLibraries.h2
+	implementation testLibraries.jsonassert
+	implementation testLibraries.spring_boot_starter_test
+	implementation testLibraries.spring_security_test
 	
-    testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
+    implementation("org.springframework.restdocs:spring-restdocs-mockmvc")
 }
