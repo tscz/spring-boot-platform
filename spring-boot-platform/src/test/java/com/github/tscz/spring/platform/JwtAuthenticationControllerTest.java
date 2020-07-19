@@ -46,7 +46,7 @@ public class JwtAuthenticationControllerTest {
 		var response = restTemplate.postForEntity("/token", jwtRequest, JwtResponse.class);
 
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-		assertThat(response.getBody().getToken()).isNotEmpty();
+		assertThat(response.getBody().token()).isNotEmpty();
 	}
 
 }

@@ -6,7 +6,7 @@ apply plugin: 'org.asciidoctor.jvm.pdf'
 apply plugin: 'io.spring.dependency-management'
 
 buildscript {
-  apply from: "${rootDir}/gradle/dependencies.gradle"
+  apply from: "./gradle/dependencies.gradle"
 
   repositories {
 	gradlePluginPortal()
@@ -33,7 +33,7 @@ allprojects {
 
 subprojects {
 	group = 'com.github.tscz.spring.platform'
-	version = '0.0.6'
+	version = '0.0.7'
 	
 	apply plugin: "java"
 	apply plugin: "jacoco"
@@ -49,6 +49,21 @@ subprojects {
 		useJUnitPlatform()
 	}
 	
+	tasks.withType(JavaCompile) {
+    	options.compilerArgs += "--enable-preview"
+	}
+	tasks.withType(Test) {
+	    jvmArgs += "--enable-preview"
+	}
+	tasks.withType(JavaExec) {
+	    jvmArgs += "--enable-preview"
+	}
+
+	javadoc.options {
+	    addBooleanOption('-enable-preview', true)
+	    addStringOption('-release', '14')
+	}
+
 	apply from: file("$rootProject.projectDir/gradle/heroku/stage.gradle")
 }
 
@@ -62,6 +77,8 @@ jacocoTestReport {
 test {
 	useJUnitPlatform()
 }
+
+
 
 // coveralls setup
 task jacocoRootReport(type: JacocoReport) {

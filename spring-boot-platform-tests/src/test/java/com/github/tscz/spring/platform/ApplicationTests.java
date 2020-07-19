@@ -62,7 +62,7 @@ public class ApplicationTests {
 		// Retrieve bearer token
 		var jwtRequest = new JwtRequest("admin", "password");
 		var jwtResponse = restTemplate.postForEntity("/token", jwtRequest, JwtResponse.class);
-		var token = jwtResponse.getBody().getToken();
+		var token = jwtResponse.getBody().token();
 		assertThat(jwtResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
 		assertThat(token).isNotEmpty();
 		
