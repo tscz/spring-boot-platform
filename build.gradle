@@ -33,7 +33,7 @@ allprojects {
 
 subprojects {
 	group = 'com.github.tscz.spring.platform'
-	version = '0.0.7'
+	version = '0.0.7-SNAPSHOT'
 	
 	apply plugin: "java"
 	apply plugin: "jacoco"
@@ -83,14 +83,16 @@ test {
 // coveralls setup
 task jacocoRootReport(type: JacocoReport) {
     description = 'Generates an aggregate report from all subprojects'
-    dependsOn = subprojects.test
-    sourceDirectories.from files(subprojects.sourceSets.main.allSource.srcDirs)
-    classDirectories.from  files(subprojects.sourceSets.main.output)
-    executionData.from files(subprojects.jacocoTestReport.executionData)
-    reports {
-        html.enabled = true
-        xml.enabled = true
-    }
+ 	dependsOn = subprojects.test
+  	additionalSourceDirs.setFrom files(subprojects.sourceSets.main.allSource.srcDirs)
+  	sourceDirectories.setFrom files(subprojects.sourceSets.main.allSource.srcDirs)
+  	classDirectories.setFrom files(subprojects.sourceSets.main.output)
+  	executionData.setFrom project.fileTree(dir: '.', include: '**/build/jacoco/test.exec')
+  	reports {
+    	xml.enabled true
+    	csv.enabled false
+    	html.enabled true
+  	}
 }
 
 coveralls {
