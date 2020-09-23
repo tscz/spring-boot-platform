@@ -36,7 +36,11 @@ subprojects {
 	version = '0.0.8-SNAPSHOT'
 	
 	apply plugin: "java"
-	apply plugin: "jacoco"
+	apply plugin: "jacoco"	
+		
+	jacoco {
+        toolVersion = pluginVersions.jacoco
+    }
 	
 	jacocoTestReport {
         reports {
@@ -65,6 +69,7 @@ subprojects {
 	}
 
 	apply from: file("$rootProject.projectDir/gradle/heroku/stage.gradle")
+	
 }
 
 jacocoTestReport {
@@ -93,6 +98,10 @@ task jacocoRootReport(type: JacocoReport) {
     	csv.enabled false
     	html.enabled true
   	}
+  	
+  	jacoco {
+        toolVersion = pluginVersions.jacoco
+    }
 }
 
 coveralls {
