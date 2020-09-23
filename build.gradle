@@ -33,7 +33,7 @@ allprojects {
 
 subprojects {
 	group = 'com.github.tscz.spring.platform'
-	version = '0.0.7-SNAPSHOT'
+	version = '0.0.8-SNAPSHOT'
 	
 	apply plugin: "java"
 	apply plugin: "jacoco"
@@ -61,7 +61,7 @@ subprojects {
 
 	javadoc.options {
 	    addBooleanOption('-enable-preview', true)
-	    addStringOption('-release', '14')
+	    addStringOption('-release', '15')
 	}
 
 	apply from: file("$rootProject.projectDir/gradle/heroku/stage.gradle")
