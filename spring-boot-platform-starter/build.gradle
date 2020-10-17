@@ -1,12 +1,12 @@
 plugins {
     id "maven-publish"
     id "java-library"
-	id "org.springframework.boot"
-    id "io.spring.dependency-management"
 }
 
 dependencies {
     api project(':spring-boot-platform')
+
+	api platform('org.springframework.boot:spring-boot-dependencies:2.3.1.RELEASE')
 
 	api libraries.guava
 	api libraries.jjwt_api
