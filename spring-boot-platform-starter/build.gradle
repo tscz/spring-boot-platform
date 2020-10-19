@@ -1,46 +1,34 @@
+import com.github.tscz.spring.platform.gradle.Versions;
+
 plugins {
-    id "maven-publish"
-    id "java-library"
+    id "spring-boot-platform.library-conventions"
 }
+
+def versions = new Versions(project)
 
 dependencies {
+    internal(platform(project(":dependencies")))
+
     api project(':spring-boot-platform')
 
-	api platform('org.springframework.boot:spring-boot-dependencies:2.3.1.RELEASE')
+    api platform('org.springframework.boot:spring-boot-dependencies:' + versions.get("spring_boot.version"))
 
-	api libraries.guava
-	api libraries.jjwt_api
-	api libraries.jjwt_runtime
-	api libraries.problem
-	api libraries.spring_boot_starter_jpa
-	api libraries.spring_boot_starter_web
-	api libraries.spring_boot_starter_security
-	api libraries.spring_boot_starter_validation
+	api 'com.google.guava:guava:' + versions.get("guava.version")
+	api 'io.jsonwebtoken:jjwt-api:' + versions.get("jjwt.version")
+	api 'io.jsonwebtoken:jjwt-impl:' + versions.get("jjwt.version")
+    api 'io.jsonwebtoken:jjwt-jackson:' + versions.get("jjwt.version")
+	api 'org.zalando:problem-spring-web:' + versions.get("problem.version")
+	api 'org.springframework.boot:spring-boot-starter-data-jpa:'
+	api 'org.springframework.boot:spring-boot-starter-web:'
+	api 'org.springframework.boot:spring-boot-starter-security:'
+	api 'org.springframework.boot:spring-boot-starter-validation:'
 
-	api libraries.postgres
+	api 'org.postgresql:postgresql:' + versions.get("problem.version")
 	
-	api testLibraries.httpclient
-	api testLibraries.h2
-	api testLibraries.jsonassert
-	api testLibraries.spring_boot_starter_test
-    api testLibraries.spring_rest_doc
-	api testLibraries.spring_security_test
-}
-
-publishing {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/tscz/spring-boot-platform")
-            credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
-            }
-        }
-    }
-    publications {
-        gpr(MavenPublication) {
-            from(components.java)
-        }
-    }
+	api 'org.apache.httpcomponents:httpclient:' + versions.get("problem.version")
+	api 'com.h2database:h2:' + versions.get("problem.version")
+	api 'net.javacrumbs.json-unit:json-unit-assertj:' + versions.get("jsonassert.version")
+	api 'org.springframework.boot:spring-boot-starter-test:'
+    api 'org.springframework.restdocs:spring-restdocs-mockmvc:'
+	api 'org.springframework.security:spring-security-test:'
 }

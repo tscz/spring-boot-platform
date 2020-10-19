@@ -1,0 +1,34 @@
+plugins {
+    id 'groovy-gradle-plugin'
+}
+
+// Read version numbers (key=value pairs from <root>/gradle.properties)
+def props = new Properties() 
+rootDir.toPath().resolveSibling(GRADLE_PROPERTIES).toFile().withInputStream {
+    props.load(it)
+}
+props.each { key, val -> project.ext."$key" = val }
+
+println "Setup buildSrc with versions:"
+println project.ext.getProperties()
+
+repositories {
+        jcenter()
+	    gradlePluginPortal()
+        mavenCentral()
+        maven { url("https://plugins.gradle.org/m2/") }
+		maven { url 'https://repo.spring.io/snapshot' }
+		maven { url 'https://repo.spring.io/milestone' }
+        maven { url "https://repo.spring.io/plugins-release" }
+        maven { url "https://repo.spring.io/libs-release" }
+        maven { url "https://repo.spring.io/libs-milestone" }
+ }
+
+dependencies {
+    implementation 'gradle.plugin.org.kt3k.gradle.plugin:coveralls-gradle-plugin:' + project.ext.get('coveralls.plugin.version')
+    implementation 'org.asciidoctor:asciidoctor-gradle-jvm:' + project.ext.get('asciidoc.plugin.version')
+    implementation 'org.asciidoctor:asciidoctor-gradle-jvm-pdf:' + project.ext.get('asciidoc.plugin.version')
+    implementation 'org.springframework.boot:spring-boot-gradle-plugin:' + project.ext.get('spring_boot.plugin.version')
+    implementation 'gradle.plugin.com.github.spotbugs.snom:spotbugs-gradle-plugin:' + project.ext.get('spotbugs.plugin.version')
+}
+

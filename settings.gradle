@@ -1,5 +1,27 @@
+pluginManagement {
+    plugins {
+        id 'com.github.kt3k.coveralls' version settings.ext['coveralls.plugin.version']
+        id 'org.asciidoctor.jvm.convert' version settings.ext['asciidoc.plugin.version']
+        id 'org.asciidoctor.jvm.pdf' version settings.ext['asciidoc.plugin.version']
+        id 'org.springframework.boot' version settings.ext['spring_boot.plugin.version']
+        id 'com.github.spotbugs' version settings.ext['spotbugs.plugin.version']
+    }
+    repositories {
+        jcenter()
+	    gradlePluginPortal()
+        mavenCentral()
+        maven { url("https://plugins.gradle.org/m2/") }
+		maven { url 'https://repo.spring.io/snapshot' }
+		maven { url 'https://repo.spring.io/milestone' }
+        maven { url "https://repo.spring.io/plugins-release" }
+        maven { url "https://repo.spring.io/libs-release" }
+        maven { url "https://repo.spring.io/libs-milestone" }
+    }
+}
+
 rootProject.name = 'spring-boot-platform-complete'
 
+include 'dependencies'
 include 'spring-boot-platform'
 include 'spring-boot-platform-starter'
 include 'spring-boot-platform-tests'

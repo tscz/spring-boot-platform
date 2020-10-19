@@ -1,0 +1,4 @@
+plugins {
+    id "org.asciidoctor.jvm.convert"
+    id "org.asciidoctor.jvm.pdf"
+}

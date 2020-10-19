@@ -1,123 +1,46 @@
-apply plugin: 'com.github.kt3k.coveralls'
-apply plugin: 'jacoco'
-apply plugin: 'java'
-apply plugin: 'org.asciidoctor.jvm.convert'
-apply plugin: 'org.asciidoctor.jvm.pdf'
-apply plugin : 'eclipse'
-
-buildscript {
-  apply from: "./gradle/dependencies.gradle"
-
-  repositories {
-	gradlePluginPortal()
-    jcenter()
-    maven { url "https://repo.spring.io/plugins-release" }
-    maven { url "https://repo.spring.io/libs-release" }
-    maven { url "https://repo.spring.io/libs-milestone" }
-  }
-
-  dependencies {
-    classpath gradlePlugins.values()
-  }
-}
-
 allprojects {
-	repositories {
-		mavenCentral()
-		maven { url("https://plugins.gradle.org/m2/") }
+
+	//apply(plugin = "eclipse")
+	//apply(plugin = "idea")
+	//apply(plugin = "com.diffplug.spotless")
+
+    repositories {
+        jcenter()
+	    gradlePluginPortal()
+        mavenCentral()
+        maven { url("https://plugins.gradle.org/m2/") }
 		maven { url 'https://repo.spring.io/snapshot' }
 		maven { url 'https://repo.spring.io/milestone' }
-	}
-}
-
-subprojects {
-	group = 'com.github.tscz.spring.platform'
-	version = '0.0.8-SNAPSHOT'
-	
-	apply plugin: "java"
-	apply plugin: "jacoco"
-	apply plugin: "eclipse"	
-		
-	jacoco {
-        toolVersion = pluginVersions.jacoco
+        maven { url "https://repo.spring.io/plugins-release" }
+        maven { url "https://repo.spring.io/libs-release" }
+        maven { url "https://repo.spring.io/libs-milestone" }
     }
-	
-	jacocoTestReport {
-        reports {
-            xml.enabled = true // coveralls plugin depends on xml format report
-            html.enabled = true
-        }
-    }
-    
-    test {
-		useJUnitPlatform()
-	}
-	
-	tasks.withType(JavaCompile) {
-    	options.compilerArgs += "--enable-preview"
-	}
-	tasks.withType(Test) {
-	    jvmArgs += "--enable-preview"
-	}
-	tasks.withType(JavaExec) {
-	    jvmArgs += "--enable-preview"
-	}
-
-	javadoc.options {
-	    addBooleanOption('-enable-preview', true)
-	    addStringOption('-release', '15')
-	}
-
-	apply from: file("$rootProject.projectDir/gradle/heroku/stage.gradle")
-	
 }
-
-jacocoTestReport {
-	reports {
-		xml.enabled = true // coveralls plugin depends on xml format report
-		html.enabled = true
-	}
-}
-
-test {
-	useJUnitPlatform()
-}
-
-
 
 // coveralls setup
-task jacocoRootReport(type: JacocoReport) {
-    description = 'Generates an aggregate report from all subprojects'
- 	dependsOn = subprojects.test
-  	additionalSourceDirs.setFrom files(subprojects.sourceSets.main.allSource.srcDirs)
-  	sourceDirectories.setFrom files(subprojects.sourceSets.main.allSource.srcDirs)
-  	classDirectories.setFrom files(subprojects.sourceSets.main.output)
-  	executionData.setFrom project.fileTree(dir: '.', include: '**/build/jacoco/test.exec')
-  	reports {
-    	xml.enabled true
-    	csv.enabled false
-    	html.enabled true
-  	}
+// task jacocoRootReport(type: JacocoReport) {
+//     description = 'Generates an aggregate report from all subprojects'
+//  	dependsOn = subprojects.test
+//   	additionalSourceDirs.setFrom files(subprojects.sourceSets.main.allSource.srcDirs)
+//   	sourceDirectories.setFrom files(subprojects.sourceSets.main.allSource.srcDirs)
+//   	classDirectories.setFrom files(subprojects.sourceSets.main.output)
+//   	executionData.setFrom project.fileTree(dir: '.', include: '**/build/jacoco/test.exec')
+//   	reports {
+//     	xml.enabled true
+//     	csv.enabled false
+//     	html.enabled true
+//   	}
   	
-  	jacoco {
-        toolVersion = pluginVersions.jacoco
-    }
-}
+//   	// jacoco {
+//     //     toolVersion = project.ext['jacoco.version']
+//     // }
+// }
 
-coveralls {
-	jacocoReportPath = "${buildDir}/reports/jacoco/jacocoRootReport/jacocoRootReport.xml"
-  	saveAsFile = true
-	sendToCoveralls = false
-    sourceDirs = subprojects.sourceSets.main.allSource.srcDirs.flatten()
-}
+// coveralls {
+// 	jacocoReportPath = "${buildDir}/reports/jacoco/jacocoRootReport/jacocoRootReport.xml"
+//   	saveAsFile = true
+// 	sendToCoveralls = false
+//     sourceDirs = subprojects.sourceSets.main.allSource.srcDirs.flatten()
+// }
 
-
-asciidoctor {
-	outputOptions {
-	        backends = ['html5', 'pdf']
-	    }
-
-	options doctype: 'book'
-	attributes \
-		'toc' : 'left' 
-}
+// apply from: file("$rootProject.projectDir/gradle/heroku/stage.gradle")

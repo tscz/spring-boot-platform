@@ -1,0 +1,36 @@
+// Define Java Library conventions for this organization.
+// Projects need to use the organization's Java conventions and publish using Maven Publish
+
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'spring-boot-platform.java-conventions'
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/tscz/spring-boot-platform")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
+
+// The project requires libraries to have a README containing sections configured below
+def readmeCheck = tasks.register('readmeCheck', com.github.tscz.spring.platform.gradle.ReadmeVerificationTask) {
+    // Expect the README in the project directory
+    readme = layout.projectDirectory.file("README.md")
+    // README must contain a Service API header
+    readmePatterns = ['^## API$', '^## Changelog$']
+}
+
+//tasks.named('check') { dependsOn(readmeCheck) }
