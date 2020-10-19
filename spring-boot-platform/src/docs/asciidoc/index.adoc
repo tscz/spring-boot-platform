@@ -1,9 +1,0 @@
-== Project Spring Boot Platform
-
-This is a first attempt.
-
-=== This is a section
-A new part is entered here.
-
-==== This is a sub section
-Another part is also added here.

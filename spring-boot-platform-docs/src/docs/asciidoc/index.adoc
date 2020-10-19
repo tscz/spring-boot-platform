@@ -1,0 +1,56 @@
+== Project Spring Boot Platform
+
+This is a first attempt.
+
+=== This is a section
+A new part is entered here.
+
+==== This is a sub section
+Another part is also added here.
+
+
+= ditaa
+
+[ditaa,asciidoctor-diagram-process]
+....
+                   +-------------+
+                   | Asciidoctor |-------+
+                   |   diagram   |       |
+                   +-------------+       | PNG out
+                       ^                 |
+                       | ditaa in        |
+                       |                 v
+ +--------+   +--------+----+    /---------------\
+ |        |---+ Asciidoctor +--->|               |
+ |  Text  |   +-------------+    |   Beautiful   |
+ |Document|   |   !magic!   |    |    Output     |
+ |     {d}|   |             |    |               |
+ +---+----+   +-------------+    \---------------/
+     :                                   ^
+     |          Lots of work             |
+     +-----------------------------------+
+....
+
+= Plantuml
+[plantuml, diagram-classes, svg]     
+....
+!pragma graphviz_dot jdot
+class BlockProcessor
+class DiagramBlock
+class DitaaBlock
+class PlantUmlBlock
+
+BlockProcessor <|-- DiagramBlock
+DiagramBlock <|-- DitaaBlock
+DiagramBlock <|-- PlantUmlBlock
+....
+
+[[main-classes]]
+.The PlantUML block extension class
+[plantuml, sample-plantuml-diagram, alt="Class diagram", width=135, height=118]
+----
+!pragma graphviz_dot jdot
+class BlockProcessor
+class PlantUmlBlock
+BlockProcessor <|-- PlantUmlBlock
+----

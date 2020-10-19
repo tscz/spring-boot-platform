@@ -23,5 +23,6 @@ rootProject.name = 'spring-boot-platform-complete'
 
 include 'dependencies'
 include 'spring-boot-platform'
+include 'spring-boot-platform-docs'
 include 'spring-boot-platform-starter'
 include 'spring-boot-platform-tests'

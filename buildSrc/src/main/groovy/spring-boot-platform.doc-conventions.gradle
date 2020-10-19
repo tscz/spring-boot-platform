@@ -1,0 +1,20 @@
+plugins {
+    id "org.asciidoctor.jvm.convert"
+    id "org.asciidoctor.jvm.pdf"
+}
+
+asciidoctor {
+	outputOptions {
+	        backends = ['html5', 'pdf']
+	    }
+
+	options doctype: 'book'
+	attributes \
+		'toc' : 'left' 
+}
+
+asciidoctorj {
+    modules {
+       diagram.use() 
+    }
+}
