@@ -17,30 +17,6 @@ allprojects {
     }
 }
 
-// coveralls setup
-// task jacocoRootReport(type: JacocoReport) {
-//     description = 'Generates an aggregate report from all subprojects'
-//  	dependsOn = subprojects.test
-//   	additionalSourceDirs.setFrom files(subprojects.sourceSets.main.allSource.srcDirs)
-//   	sourceDirectories.setFrom files(subprojects.sourceSets.main.allSource.srcDirs)
-//   	classDirectories.setFrom files(subprojects.sourceSets.main.output)
-//   	executionData.setFrom project.fileTree(dir: '.', include: '**/build/jacoco/test.exec')
-//   	reports {
-//     	xml.enabled true
-//     	csv.enabled false
-//     	html.enabled true
-//   	}
-  	
-//   	// jacoco {
-//     //     toolVersion = project.ext['jacoco.version']
-//     // }
-// }
 
-// coveralls {
-// 	jacocoReportPath = "${buildDir}/reports/jacoco/jacocoRootReport/jacocoRootReport.xml"
-//   	saveAsFile = true
-// 	sendToCoveralls = false
-//     sourceDirs = subprojects.sourceSets.main.allSource.srcDirs.flatten()
-// }
 
 // apply from: file("$rootProject.projectDir/gradle/heroku/stage.gradle")

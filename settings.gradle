@@ -26,3 +26,7 @@ include 'spring-boot-platform'
 include 'spring-boot-platform-docs'
 include 'spring-boot-platform-starter'
 include 'spring-boot-platform-tests'
+
+
+// reporting utility projects
+include 'code-coverage-report'

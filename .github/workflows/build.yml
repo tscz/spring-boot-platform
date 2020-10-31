@@ -20,8 +20,8 @@ jobs:
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-          ./gradlew jacocoRootReport coveralls
-          curl -F 'json_file=@build/coveralls/report.json' 'https://coveralls.io/api/v1/jobs'
+          ./gradlew codeCoverageReport coveralls
+          curl -F 'json_file=@build/report.json' 'https://coveralls.io/api/v1/jobs'
     - name: Deploy to Github Package Registry
       env:
         USERNAME: ${{ github.actor }}

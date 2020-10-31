@@ -1,0 +1,10 @@
+plugins {
+    id 'spring-boot-platform.jacoco-aggregation'
+    id 'spring-boot-platform.coveralls'
+}
+
+dependencies {
+    
+    implementation project(':spring-boot-platform')
+    implementation project(':spring-boot-platform-tests')
+}

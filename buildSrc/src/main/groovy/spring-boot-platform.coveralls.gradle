@@ -1,0 +1,11 @@
+plugins {
+    id 'com.github.kt3k.coveralls'
+}
+
+coveralls {
+	jacocoReportPath = "${buildDir}/reports/jacoco/codeCoverageReport/codeCoverageReport.xml"
+  	saveAsFile = true
+	sendToCoveralls = false
+    sourceDirs = parent.subprojects.collect { p -> new File(p.projectDir, "/src/main/java") }
+    saveFilePath = "${buildDir}/report.json"
+}
