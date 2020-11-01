@@ -20,7 +20,7 @@ jobs:
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-          ./gradlew codeCoverageReport coveralls
+          ./gradlew codeCoverageReport coveralls --info --stacktrace
           curl -F 'json_file=@build/report.json' 'https://coveralls.io/api/v1/jobs'
     - name: Deploy to Github Package Registry
       env:
