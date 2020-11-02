@@ -1,6 +1,5 @@
 plugins {
     id 'spring-boot-platform.jacoco-aggregation'
-    id 'spring-boot-platform.coveralls'
 }
 
 dependencies {

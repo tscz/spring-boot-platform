@@ -1,3 +1,7 @@
+plugins {
+    id 'spring-boot-platform.coveralls'
+}
+
 allprojects {
 
 	//apply(plugin = "eclipse")

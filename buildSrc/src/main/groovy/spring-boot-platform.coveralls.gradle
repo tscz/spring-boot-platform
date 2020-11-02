@@ -1,11 +1,12 @@
 plugins {
-    id 'com.github.kt3k.coveralls'
+     id 'com.github.kt3k.coveralls'
 }
 
+// system env OVERALLS_REPO_TOKEN=xxx must be set to run this task also locally
 coveralls {
-	jacocoReportPath = "${buildDir}/reports/jacoco/codeCoverageReport/codeCoverageReport.xml"
+	jacocoReportPath = "${projectDir}/code-coverage-report/build/reports/jacoco/codeCoverageReport/codeCoverageReport.xml"
   	saveAsFile = true
-	sendToCoveralls = false
-    sourceDirs = parent.subprojects.collect { p -> new File(p.projectDir, "/src/main/java") }
-    saveFilePath = "${buildDir}/report.json"
+	sendToCoveralls = true
+    sourceDirs = subprojects.collect { p -> new File(p.projectDir, "/src/main/java") }
+    saveFilePath = "${projectDir}/coveralls.json"
 }

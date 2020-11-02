@@ -12,3 +12,11 @@ dependencies {
 springBoot {
 	mainClassName = 'com.github.tscz.spring.platform.TestApplication'
 }
+
+bootJar {
+	classifier = 'executable'
+}
+
+jar {
+    enabled = true
+}

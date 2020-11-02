@@ -37,7 +37,10 @@ def coverageDataPath = configurations.create("coverageDataPath") {
 def codeCoverageReport = tasks.register('codeCoverageReport', JacocoReport) {
 
     println "BEGIN---"
-    files(configurations.runtimeClasspath).each { println it}
+    files(configurations.runtimeClasspath.asFileTree.matching {
+        include "**/spring-boot-platform-*.jar"
+        exclude "**/*-executable.jar"
+    }).each { println it}
     println "END---"
 
     additionalClassDirs(configurations.runtimeClasspath.asFileTree.matching {
@@ -61,6 +64,11 @@ def codeCoverageReport = tasks.register('codeCoverageReport', JacocoReport) {
     }
     jacoco {
         toolVersion = project.ext['jacoco.version']
+    }
+    test {
+        jacoco {
+            includes = ["com/github/tscz/**/*.class"]
+        }
     }
 }
 

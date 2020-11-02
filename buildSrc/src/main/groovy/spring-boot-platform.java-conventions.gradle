@@ -50,6 +50,10 @@ jacoco {
 
 test {
 	useJUnitPlatform()
+    jacoco {
+        excludes = ["BOOT-INF/**"]
+    }   
+
 }
 
 
