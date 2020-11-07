@@ -46,10 +46,7 @@ jacoco {
 
 test {
 	useJUnitPlatform()
-	jacoco {
-		excludes = ["BOOT-INF/**"]
-	}
-
+	finalizedBy jacocoTestReport
 }
 
 spotbugs {
@@ -68,7 +65,6 @@ spotbugsMain {
 }
 
 
-// Do not generate reports for individual projects
 tasks.named("jacocoTestReport") {
 	enabled = true
 	reports {
