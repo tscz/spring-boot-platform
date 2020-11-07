@@ -2,4 +2,5 @@ plugins {
 	id 'spring-boot-platform.project-conventions'
 	id 'spring-boot-platform.coveralls'
 	id 'spring-boot-platform.heroku'
+	id 'spring-boot-platform.sonarqube'
 }
