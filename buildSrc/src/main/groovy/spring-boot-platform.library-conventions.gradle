@@ -2,9 +2,9 @@
 // Projects need to use the organization's Java conventions and publish using Maven Publish
 
 plugins {
+    id 'spring-boot-platform.java-conventions'
     id 'java-library'
     id 'maven-publish'
-    id 'spring-boot-platform.java-conventions'
 }
 
 publishing {

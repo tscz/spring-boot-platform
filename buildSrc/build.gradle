@@ -30,5 +30,6 @@ dependencies {
     implementation 'org.asciidoctor:asciidoctor-gradle-jvm-pdf:' + project.ext.get('asciidoc.plugin.version')
     implementation 'org.springframework.boot:spring-boot-gradle-plugin:' + project.ext.get('spring_boot.plugin.version')
     implementation 'gradle.plugin.com.github.spotbugs.snom:spotbugs-gradle-plugin:' + project.ext.get('spotbugs.plugin.version')
+    implementation 'com.diffplug.spotless:spotless-plugin-gradle:' + project.ext.get('spotless.plugin.version')
 }
 

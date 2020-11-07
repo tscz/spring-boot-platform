@@ -50,7 +50,7 @@ public class ApplicationTests {
 		beans.forEach((name, bean) -> System.out.println(name));
 	}
 
-	//@Test
+	// @Test
 	public void accessGrantedWithValidToken() {
 		var testEntity = new TestEntity();
 		testEntity.setTitle("Title");
@@ -65,7 +65,7 @@ public class ApplicationTests {
 		var token = jwtResponse.getBody().token();
 		assertThat(jwtResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
 		assertThat(token).isNotEmpty();
-		
+
 		// Request without bearer token
 		HttpHeaders headers = new HttpHeaders();
 		headers.add(HttpHeaders.CONTENT_TYPE, ContentType.APPLICATION_JSON.toString());

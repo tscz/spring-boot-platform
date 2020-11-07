@@ -20,7 +20,8 @@ import org.zalando.problem.spring.web.advice.security.SecurityAdviceTrait;
  * in {@link javax.servlet.Filter} are not handled in
  * {@link org.springframework.web.bind.annotation.ExceptionHandler}.</li>
  * 
- * <li>Add ExceptionHandlers, which are implementing <a href="https://tools.ietf.org/html/rfc7807">RFC 7807</a> for standardized
+ * <li>Add ExceptionHandlers, which are implementing
+ * <a href="https://tools.ietf.org/html/rfc7807">RFC 7807</a> for standardized
  * application/problem+json rest responses.</li>
  * </ul>
  */

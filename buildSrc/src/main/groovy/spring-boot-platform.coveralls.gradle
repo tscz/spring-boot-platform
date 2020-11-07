@@ -2,11 +2,24 @@ plugins {
      id 'com.github.kt3k.coveralls'
 }
 
-// system env OVERALLS_REPO_TOKEN=xxx must be set to run this task also locally
+if (!subprojects) {
+    throw new IllegalArgumentException("This plugin can only applied on parent projects with subprojects")
+}
+
 coveralls {
 	jacocoReportPath = "${projectDir}/code-coverage-report/build/reports/jacoco/codeCoverageReport/codeCoverageReport.xml"
   	saveAsFile = true
 	sendToCoveralls = true
     sourceDirs = subprojects.collect { p -> new File(p.projectDir, "/src/main/java") }
     saveFilePath = "${projectDir}/coveralls.json"
+
+
+}
+
+gradle.taskGraph.whenReady { taskGraph ->
+    if (taskGraph.hasTask(':coveralls')) {
+        if (!System.env['COVERALLS_REPO_TOKEN']) {
+            throw new IllegalArgumentException("System env variable COVERALLS_REPO_TOKEN must be set to run this task outside of CI")
+        }
+    }
 }

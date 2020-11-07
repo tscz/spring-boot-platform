@@ -14,8 +14,10 @@ Tools:
 * Gradle
 * Coveralls
 * Postgres
-* 
-
+* ASCIIdoc
+* Plantuml
+* Spotless
+* Eclipse Formatter
 
 Standards:
 * OpenAPI (https://github.com/OAI/OpenAPI-Specification)

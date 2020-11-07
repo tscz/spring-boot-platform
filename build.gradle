@@ -1,26 +1,5 @@
 plugins {
+    id 'spring-boot-platform.project-conventions'
     id 'spring-boot-platform.coveralls'
+    id 'spring-boot-platform.heroku'
 }
-
-allprojects {
-
-	//apply(plugin = "eclipse")
-	//apply(plugin = "idea")
-	//apply(plugin = "com.diffplug.spotless")
-
-    repositories {
-        jcenter()
-	    gradlePluginPortal()
-        mavenCentral()
-        maven { url("https://plugins.gradle.org/m2/") }
-		maven { url 'https://repo.spring.io/snapshot' }
-		maven { url 'https://repo.spring.io/milestone' }
-        maven { url "https://repo.spring.io/plugins-release" }
-        maven { url "https://repo.spring.io/libs-release" }
-        maven { url "https://repo.spring.io/libs-milestone" }
-    }
-}
-
-
-
-// apply from: file("$rootProject.projectDir/gradle/heroku/stage.gradle")

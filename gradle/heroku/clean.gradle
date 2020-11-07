@@ -1,7 +1,0 @@
-plugins {
-  id 'base'
-}
-
-clean.doLast {
-  delete rootProject.buildDir
-}

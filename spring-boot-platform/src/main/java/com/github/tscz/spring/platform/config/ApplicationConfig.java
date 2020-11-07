@@ -6,12 +6,12 @@ import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
 
+import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.security.WeakKeyException;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.validation.annotation.Validated;
-
-import io.jsonwebtoken.security.Keys;
-import io.jsonwebtoken.security.WeakKeyException;
 
 @ConfigurationProperties(prefix = "com.github.tscz.spring.platform")
 @Validated

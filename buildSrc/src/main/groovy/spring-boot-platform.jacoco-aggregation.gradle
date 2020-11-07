@@ -1,10 +1,7 @@
 plugins {
+    id 'spring-boot-platform.project-conventions'
     id 'java'
     id 'jacoco'
-}
-
-repositories {
-    jcenter()
 }
 
 // A resolvable configuration to collect source code
@@ -36,19 +33,9 @@ def coverageDataPath = configurations.create("coverageDataPath") {
 // Task to gather code coverage from multiple subprojects
 def codeCoverageReport = tasks.register('codeCoverageReport', JacocoReport) {
 
-    println "BEGIN---"
-    files(configurations.runtimeClasspath.asFileTree.matching {
-        include "**/spring-boot-platform-*.jar"
-        exclude "**/*-executable.jar"
-    }).each { println it}
-    println "END---"
-
     additionalClassDirs(configurations.runtimeClasspath.asFileTree.matching {
         include "**/spring-boot-platform-*.jar"
     })
-
-    println "overview"
-    println rootProject
 
     additionalSourceDirs(sourcesPath.incoming.artifactView { lenient(true) }.files)
     executionData(coverageDataPath.incoming.artifactView { lenient(true) }.files.filter { it.exists() })

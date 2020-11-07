@@ -9,6 +9,12 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 
 import java.util.Collections;
 
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.UnsupportedJwtException;
+import io.jsonwebtoken.impl.DefaultClaims;
+import io.jsonwebtoken.security.SignatureException;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -25,12 +31,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.zalando.problem.violations.ConstraintViolationProblem;
-
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.UnsupportedJwtException;
-import io.jsonwebtoken.impl.DefaultClaims;
-import io.jsonwebtoken.security.SignatureException;
 
 @ExtendWith(SpringExtension.class)
 public class JwtFilterTest {
@@ -128,7 +128,7 @@ public class JwtFilterTest {
 			MalformedJwtException.class, //
 			SignatureException.class, //
 			ExpiredJwtException.class, //
-			IllegalArgumentException.class })
+			IllegalArgumentException.class})
 	public void invalidTokenValue(Class<Exception> exception) throws Exception {
 
 		when(jwtTokenUtil.getAllClaimsFromToken("InvalidToken")).thenThrow(exception);

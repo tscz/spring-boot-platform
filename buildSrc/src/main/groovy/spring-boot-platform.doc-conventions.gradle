@@ -1,4 +1,5 @@
 plugins {
+	id 'spring-boot-platform.project-conventions'
     id "org.asciidoctor.jvm.convert"
     id "org.asciidoctor.jvm.pdf"
 }

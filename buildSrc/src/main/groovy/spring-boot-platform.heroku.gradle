@@ -1,0 +1,14 @@
+task stage(dependsOn: ['build','copyToLib'])
+
+task copyToLib(type: Copy) {
+  from "$buildDir/libs"
+  into "$rootProject.buildDir/libs"
+}
+copyToLib.dependsOn build
+
+gradle.taskGraph.whenReady {
+  taskGraph ->
+    if (taskGraph.hasTask(stage)) {
+      test.enabled = false
+    }
+}

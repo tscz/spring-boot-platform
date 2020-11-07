@@ -33,7 +33,8 @@ public class TestEntityController {
 	}
 
 	@PutMapping("/testEntities/{testEntityId}")
-	public TestEntity updateTestEntity(@PathVariable Long testEntityId, @Valid @RequestBody TestEntity testEntityRequest) {
+	public TestEntity updateTestEntity(@PathVariable Long testEntityId,
+			@Valid @RequestBody TestEntity testEntityRequest) {
 		return testEntityRepository.findById(testEntityId).map(testEntity -> {
 			testEntity.setTitle(testEntityRequest.getTitle());
 			testEntity.setDescription(testEntityRequest.getDescription());
