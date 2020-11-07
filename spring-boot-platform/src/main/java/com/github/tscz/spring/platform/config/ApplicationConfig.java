@@ -2,14 +2,13 @@ package com.github.tscz.spring.platform.config;
 
 import java.io.UnsupportedEncodingException;
 import java.security.Key;
+import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.validation.annotation.Validated;
-
-import com.google.common.base.Preconditions;
 
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.WeakKeyException;
@@ -30,7 +29,7 @@ public class ApplicationConfig {
 		private int expiration;
 
 		public Key getSecret() {
-			Preconditions.checkNotNull(secret, "JWT Secret must be set for Authorization.");
+			Objects.requireNonNull(secret, "JWT Secret must be set for Authorization.");
 
 			try {
 				return Keys.hmacShaKeyFor(secret.getBytes("UTF-8"));

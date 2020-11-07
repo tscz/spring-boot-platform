@@ -13,7 +13,14 @@ Languages:
 Tools:
 * Gradle
 * Coveralls
+* Postgres
+* 
 
+
+Standards:
+* OpenAPI (https://github.com/OAI/OpenAPI-Specification)
+* RF7519 JSON Web Token (https://tools.ietf.org/html/rfc7519)
+* RFC7807 Problem Details for HTTP APIs (https://tools.ietf.org/html/rfc7807)
 
 Frameworks:
 * Spring Boot
@@ -24,4 +31,5 @@ Libraries:
 Techniques:
 * Multi-Module Build
 * Isolated Dependency Management
+* Build plugins for 
 * 

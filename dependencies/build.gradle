@@ -12,7 +12,6 @@ dependencies {
 		// runtime = "dependency only for runtime, not for compilation"
 
         api 'org.springframework.boot:spring-boot-dependencies:' + versions.get("spring_boot.version")
-        api 'com.google.guava:guava:' + versions.get("guava.version")
         api 'io.jsonwebtoken:jjwt-api:' + versions.get("jjwt.version")
         api 'io.jsonwebtoken:jjwt-impl:' + versions.get("jjwt.version")
         api 'io.jsonwebtoken:jjwt-jackson:' + versions.get("jjwt.version")
