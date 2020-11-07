@@ -1,1 +1,1 @@
-web: java --enable-preview $JAVA_OPTS -Dserver.port=$PORT -jar spring-boot-platform-tests/build/libs/spring-boot-platform-*.jar
+web: java --enable-preview $JAVA_OPTS -Dserver.port=$PORT -jar spring-boot-platform-tests/build/libs/spring-boot-platform-*-executable.jar
