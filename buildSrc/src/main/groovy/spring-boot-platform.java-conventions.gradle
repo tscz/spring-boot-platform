@@ -51,6 +51,22 @@ test {
 
 }
 
+spotbugs {
+	toolVersion = project.ext['spotbugs.version']
+	ignoreFailures = true
+}
+
+spotbugsMain {
+	reports {
+		html {
+			enabled = true
+			destination = file("$buildDir/reports/spotbugs/main/spotbugs.html")
+			stylesheet = 'fancy-hist.xsl'
+		}
+	}
+}
+
+
 // Do not generate reports for individual projects
 tasks.named("jacocoTestReport") {
 	enabled = true
@@ -102,14 +118,4 @@ configurations.create('coverageDataElements') {
 // Enable deprecation messages when compiling Java code
 tasks.withType(JavaCompile).configureEach {
 	options.compilerArgs << "-Xlint:deprecation"
-}
-
-spotbugsMain {
-	reports {
-		html {
-			enabled = true
-			destination = file("$buildDir/reports/spotbugs/main/spotbugs.html")
-			stylesheet = 'fancy-hist.xsl'
-		}
-	}
 }
