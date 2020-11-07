@@ -1,26 +1,30 @@
 plugins {
-    id 'eclipse'
-    id 'idea'
-    id 'com.diffplug.spotless'
+	id 'eclipse'
+	id 'idea'
+	id 'com.diffplug.spotless'
 }
 
 repositories {
-    jcenter()
-    gradlePluginPortal()
-    mavenCentral()
-    maven { url("https://plugins.gradle.org/m2/") }
-    maven { url 'https://repo.spring.io/snapshot' }
-    maven { url 'https://repo.spring.io/milestone' }
-    maven { url "https://repo.spring.io/plugins-release" }
-    maven { url "https://repo.spring.io/libs-release" }
-    maven { url "https://repo.spring.io/libs-milestone" }
+	jcenter()
+	gradlePluginPortal()
+	mavenCentral()
+	maven { url("https://plugins.gradle.org/m2/") }
+	maven { url 'https://repo.spring.io/snapshot' }
+	maven { url 'https://repo.spring.io/milestone' }
+	maven { url "https://repo.spring.io/plugins-release" }
+	maven { url "https://repo.spring.io/libs-release" }
+	maven { url "https://repo.spring.io/libs-milestone" }
 }
 
 spotless {
-  java {
-    target 'src/*/java/**/*.java'
-    importOrder('java', 'javax', 'io', 'com', 'org', 'com.github.tscz','')
-    removeUnusedImports()
-    eclipse('4.17.0')
-  }
+	java {
+		target 'src/*/java/**/*.java'
+		importOrder('java', 'javax', 'io', 'com', 'org', 'com.github.tscz','')
+		removeUnusedImports()
+		eclipse('4.17.0')
+	}
+	groovyGradle {
+		target '**/*.gradle'
+		greclipse()
+	}
 }

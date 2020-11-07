@@ -1,3 +1,3 @@
 plugins {
-    id "spring-boot-platform.doc-conventions"
+	id "spring-boot-platform.doc-conventions"
 }

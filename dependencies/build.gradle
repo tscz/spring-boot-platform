@@ -11,14 +11,14 @@ dependencies {
 		// api = "dependency for both compilation and runtime"
 		// runtime = "dependency only for runtime, not for compilation"
 
-        api 'org.springframework.boot:spring-boot-dependencies:' + versions.get("spring_boot.version")
-        api 'io.jsonwebtoken:jjwt-api:' + versions.get("jjwt.version")
-        api 'io.jsonwebtoken:jjwt-impl:' + versions.get("jjwt.version")
-        api 'io.jsonwebtoken:jjwt-jackson:' + versions.get("jjwt.version")
-        api 'org.zalando:problem-spring-web:' + versions.get("problem.version")
-        runtime 'org.postgresql:postgresql:' + versions.get("postgres.version")
-        api 'org.apache.httpcomponents:httpclient:' + versions.get("httpclient.version")
-        runtime 'com.h2database:h2:' + versions.get("h2.version")
-        api 'net.javacrumbs.json-unit:json-unit-assertj:' + versions.get("jsonassert.version")
+		api 'org.springframework.boot:spring-boot-dependencies:' + versions.get("spring_boot.version")
+		api 'io.jsonwebtoken:jjwt-api:' + versions.get("jjwt.version")
+		api 'io.jsonwebtoken:jjwt-impl:' + versions.get("jjwt.version")
+		api 'io.jsonwebtoken:jjwt-jackson:' + versions.get("jjwt.version")
+		api 'org.zalando:problem-spring-web:' + versions.get("problem.version")
+		runtime 'org.postgresql:postgresql:' + versions.get("postgres.version")
+		api 'org.apache.httpcomponents:httpclient:' + versions.get("httpclient.version")
+		runtime 'com.h2database:h2:' + versions.get("h2.version")
+		api 'net.javacrumbs.json-unit:json-unit-assertj:' + versions.get("jsonassert.version")
 	}
 }

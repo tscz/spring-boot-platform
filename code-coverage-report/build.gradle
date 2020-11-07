@@ -1,9 +1,9 @@
 plugins {
-    id 'spring-boot-platform.jacoco-aggregation'
+	id 'spring-boot-platform.jacoco-aggregation'
 }
 
 dependencies {
-    
-    implementation project(':spring-boot-platform')
-    implementation project(':spring-boot-platform-tests')
+
+	implementation project(':spring-boot-platform')
+	implementation project(':spring-boot-platform-tests')
 }

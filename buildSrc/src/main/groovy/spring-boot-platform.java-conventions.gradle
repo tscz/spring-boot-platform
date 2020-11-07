@@ -2,18 +2,18 @@
 // Projects need to use the Java, Checkstyle and Spotbugs plugins.
 
 plugins {
-    id 'spring-boot-platform.project-conventions'
-    id 'java'
-    id 'jacoco'
-    id 'com.github.spotbugs'
+	id 'spring-boot-platform.project-conventions'
+	id 'java'
+	id 'jacoco'
+	id 'com.github.spotbugs'
 }
 
 configurations {
-    internal {
-        visible = false
-        canBeConsumed = false
-        canBeResolved = false
-    }
+	internal {
+		visible = false
+		canBeConsumed = false
+		canBeResolved = false
+	}
 }
 
 def internal = configurations["internal"]
@@ -24,92 +24,92 @@ configurations["testCompileClasspath"].extendsFrom(internal)
 configurations["testRuntimeClasspath"].extendsFrom(internal)
 
 javadoc.options {
-        addBooleanOption('-enable-preview', true)
-        addStringOption('-release', '15')
-    }
+	addBooleanOption('-enable-preview', true)
+	addStringOption('-release', '15')
+}
 
 tasks.withType(JavaCompile) {
-    options.compilerArgs += "--enable-preview"
+	options.compilerArgs += "--enable-preview"
 
 }
 tasks.withType(Test) {
-    jvmArgs += "--enable-preview"
+	jvmArgs += "--enable-preview"
 }
 tasks.withType(JavaExec) {
-    jvmArgs += "--enable-preview"
+	jvmArgs += "--enable-preview"
 }
 
 jacoco {
-    toolVersion = project.ext['jacoco.version']
+	toolVersion = project.ext['jacoco.version']
 }
 
 test {
 	useJUnitPlatform()
-    jacoco {
-        excludes = ["BOOT-INF/**"]
-    }   
+	jacoco {
+		excludes = ["BOOT-INF/**"]
+	}
 
 }
 
 // Do not generate reports for individual projects
 tasks.named("jacocoTestReport") {
-    enabled = true
-        reports {
-        // xml is usually used to integrate code coverage with
-        // other tools like SonarQube, Coveralls or Codecov
-        xml.enabled true
+	enabled = true
+	reports {
+		// xml is usually used to integrate code coverage with
+		// other tools like SonarQube, Coveralls or Codecov
+		xml.enabled true
 
-        // HTML reports can be used to see code coverage
-        // without any external tools
-        html.enabled true
-    }
+		// HTML reports can be used to see code coverage
+		// without any external tools
+		html.enabled true
+	}
 }
 
 // Share sources folder with other projects for aggregated JaCoCo reports
 configurations.create('transitiveSourcesElements') {
-    visible = false
-    canBeResolved = false
-    canBeConsumed = true
-    extendsFrom(configurations.implementation)
-    attributes {
-        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage, Usage.JAVA_RUNTIME))
-        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category, Category.DOCUMENTATION))
-        attribute(DocsType.DOCS_TYPE_ATTRIBUTE, objects.named(DocsType, 'source-folders'))
-    }
-    sourceSets.main.java.srcDirs.forEach {
-        outgoing.artifact(it)
-    }
+	visible = false
+	canBeResolved = false
+	canBeConsumed = true
+	extendsFrom(configurations.implementation)
+	attributes {
+		attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage, Usage.JAVA_RUNTIME))
+		attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category, Category.DOCUMENTATION))
+		attribute(DocsType.DOCS_TYPE_ATTRIBUTE, objects.named(DocsType, 'source-folders'))
+	}
+	sourceSets.main.java.srcDirs.forEach {
+		outgoing.artifact(it)
+	}
 }
 
 // Share the coverage data to be aggregated for the whole product
 configurations.create('coverageDataElements') {
-    visible = false
-    canBeResolved = false
-    canBeConsumed = true
-    extendsFrom(configurations.implementation)
-    attributes {
-        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage, Usage.JAVA_RUNTIME))
-        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category, Category.DOCUMENTATION))
-        attribute(DocsType.DOCS_TYPE_ATTRIBUTE, objects.named(DocsType, 'jacoco-coverage-data'))
-    }
-    // This will cause the test task to run if the coverage data is requested by the aggregation task
-    outgoing.artifact(tasks.named("test").map { task ->
-        task.extensions.getByType(JacocoTaskExtension).destinationFile
-    })
+	visible = false
+	canBeResolved = false
+	canBeConsumed = true
+	extendsFrom(configurations.implementation)
+	attributes {
+		attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage, Usage.JAVA_RUNTIME))
+		attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category, Category.DOCUMENTATION))
+		attribute(DocsType.DOCS_TYPE_ATTRIBUTE, objects.named(DocsType, 'jacoco-coverage-data'))
+	}
+	// This will cause the test task to run if the coverage data is requested by the aggregation task
+	outgoing.artifact(tasks.named("test").map { task ->
+		task.extensions.getByType(JacocoTaskExtension).destinationFile
+	})
 }
 
 
 // Enable deprecation messages when compiling Java code
 tasks.withType(JavaCompile).configureEach {
-    options.compilerArgs << "-Xlint:deprecation"
+	options.compilerArgs << "-Xlint:deprecation"
 }
 
 spotbugsMain {
-    reports {
-        html {
-            enabled = true
-            destination = file("$buildDir/reports/spotbugs/main/spotbugs.html")
-            stylesheet = 'fancy-hist.xsl'
-        }
-    }
+	reports {
+		html {
+			enabled = true
+			destination = file("$buildDir/reports/spotbugs/main/spotbugs.html")
+			stylesheet = 'fancy-hist.xsl'
+		}
+	}
 }

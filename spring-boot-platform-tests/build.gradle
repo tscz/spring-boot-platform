@@ -1,10 +1,10 @@
 plugins {
-    id "spring-boot-platform.java-conventions"
-    id "org.springframework.boot"
+	id "spring-boot-platform.java-conventions"
+	id "org.springframework.boot"
 }
 
 dependencies {
-    internal(platform(project(":dependencies")))
+	internal(platform(project(":dependencies")))
 
 	implementation project(':spring-boot-platform-starter')
 }
@@ -18,5 +18,5 @@ bootJar {
 }
 
 jar {
-    enabled = true
+	enabled = true
 }

@@ -1,21 +1,21 @@
 import com.github.tscz.spring.platform.gradle.Versions;
 
 plugins {
-    id "spring-boot-platform.library-conventions"
+	id "spring-boot-platform.library-conventions"
 }
 
 def versions = new Versions(project)
 
 dependencies {
-    internal(platform(project(":dependencies")))
+	internal(platform(project(":dependencies")))
 
-    api project(':spring-boot-platform')
+	api project(':spring-boot-platform')
 
-    api platform('org.springframework.boot:spring-boot-dependencies:' + versions.get("spring_boot.version"))
+	api platform('org.springframework.boot:spring-boot-dependencies:' + versions.get("spring_boot.version"))
 
 	api 'io.jsonwebtoken:jjwt-api:' + versions.get("jjwt.version")
 	api 'io.jsonwebtoken:jjwt-impl:' + versions.get("jjwt.version")
-    api 'io.jsonwebtoken:jjwt-jackson:' + versions.get("jjwt.version")
+	api 'io.jsonwebtoken:jjwt-jackson:' + versions.get("jjwt.version")
 	api 'org.zalando:problem-spring-web:' + versions.get("problem.version")
 	api 'org.springframework.boot:spring-boot-starter-data-jpa:'
 	api 'org.springframework.boot:spring-boot-starter-web:'
@@ -23,11 +23,11 @@ dependencies {
 	api 'org.springframework.boot:spring-boot-starter-validation:'
 
 	api 'org.postgresql:postgresql:' + versions.get("problem.version")
-	
+
 	api 'org.apache.httpcomponents:httpclient:' + versions.get("problem.version")
 	api 'com.h2database:h2:' + versions.get("problem.version")
 	api 'net.javacrumbs.json-unit:json-unit-assertj:' + versions.get("jsonassert.version")
 	api 'org.springframework.boot:spring-boot-starter-test:'
-    api 'org.springframework.restdocs:spring-restdocs-mockmvc:'
+	api 'org.springframework.restdocs:spring-restdocs-mockmvc:'
 	api 'org.springframework.security:spring-security-test:'
 }

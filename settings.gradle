@@ -1,11 +1,11 @@
 pluginManagement {
-    plugins {
-        id 'com.github.kt3k.coveralls' version settings.ext['coveralls.plugin.version']
-        id 'org.asciidoctor.jvm.convert' version settings.ext['asciidoc.plugin.version']
-        id 'org.asciidoctor.jvm.pdf' version settings.ext['asciidoc.plugin.version']
-        id 'org.springframework.boot' version settings.ext['spring_boot.plugin.version']
-        id 'com.github.spotbugs' version settings.ext['spotbugs.plugin.version']
-    }
+	plugins {
+		id 'com.github.kt3k.coveralls' version settings.ext['coveralls.plugin.version']
+		id 'org.asciidoctor.jvm.convert' version settings.ext['asciidoc.plugin.version']
+		id 'org.asciidoctor.jvm.pdf' version settings.ext['asciidoc.plugin.version']
+		id 'org.springframework.boot' version settings.ext['spring_boot.plugin.version']
+		id 'com.github.spotbugs' version settings.ext['spotbugs.plugin.version']
+	}
 }
 
 rootProject.name = 'spring-boot-platform-complete'

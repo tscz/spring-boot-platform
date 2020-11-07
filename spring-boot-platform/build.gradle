@@ -1,15 +1,15 @@
 plugins {
-    id "spring-boot-platform.library-conventions"
+	id "spring-boot-platform.library-conventions"
 }
 
 dependencies {
-    internal(platform(project(":dependencies")))
+	internal(platform(project(":dependencies")))
 
 	implementation platform('org.springframework.boot:spring-boot-dependencies')
 
 	implementation 'io.jsonwebtoken:jjwt-api'
 	implementation 'io.jsonwebtoken:jjwt-impl'
-    implementation 'io.jsonwebtoken:jjwt-jackson'
+	implementation 'io.jsonwebtoken:jjwt-jackson'
 	implementation 'org.zalando:problem-spring-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -17,16 +17,16 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 
 	implementation 'org.postgresql:postgresql'
-	
+
 	testImplementation 'org.apache.httpcomponents:httpclient'
 	testImplementation 'com.h2database:h2'
 	testImplementation 'net.javacrumbs.json-unit:json-unit-assertj'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 	testImplementation 'org.springframework.security:spring-security-test'
 }
 
 java {
-    withJavadocJar()
-    withSourcesJar()
+	withJavadocJar()
+	withSourcesJar()
 }
