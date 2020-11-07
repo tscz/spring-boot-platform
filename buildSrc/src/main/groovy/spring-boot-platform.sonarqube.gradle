@@ -7,5 +7,11 @@ sonarqube {
 		property "sonar.projectKey", "tscz_spring-boot-platform"
 		property "sonar.organization", "tscz"
 		property "sonar.host.url", "https://sonarcloud.io"
+		property "sonar.java.spotbugs.reportPaths", [
+			"spring-boot-platform/build/reports/spotbugs/main.xml",
+			"spring-boot-platform/build/reports/spotbugs/test.xml",
+			"spring-boot-platform-tests/build/reports/spotbugs/main.xml",
+			"spring-boot-platform-tests/build/reports/spotbugs/test.xml"
+		]
 	}
 }
