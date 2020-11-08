@@ -20,7 +20,8 @@ Tools:
 * PMD
 * OWASP
 * Sonarqube
-
+* Pitest
+ 
 Standards:
 * OpenAPI (https://github.com/OAI/OpenAPI-Specification)
 * RF7519 JSON Web Token (https://tools.ietf.org/html/rfc7519)
