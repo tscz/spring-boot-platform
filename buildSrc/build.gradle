@@ -33,5 +33,6 @@ dependencies {
 	implementation 'com.diffplug.spotless:spotless-plugin-gradle:' + project.ext.get('spotless.plugin.version')
 	implementation 'org.owasp:dependency-check-gradle:' + project.ext.get('owasp.plugin.version')
 	implementation 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:' + project.ext.get('sonarqube.plugin.version')
+	implementation 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:' + project.ext.get('pitest.plugin.version')
 }
 

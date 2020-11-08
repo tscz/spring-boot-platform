@@ -1,0 +1,18 @@
+plugins {
+	id 'info.solidsoft.pitest'
+}
+
+dependencies {
+	implementation 'org.pitest:pitest-junit5-plugin:' + project.ext.get('pitest.junit5.plugin.version')
+}
+
+pitest {
+    testPlugin = "junit5"
+	jvmArgs.add("--enable-preview")
+	threads = 4
+	outputFormats = ['XML', 'HTML']
+	timestampedReports = false
+	verbose = true
+	pitestVersion = project.ext['pitest.version']
+	useClasspathFile = true
+}

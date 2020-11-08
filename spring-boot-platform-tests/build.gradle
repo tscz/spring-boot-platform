@@ -1,5 +1,6 @@
 plugins {
 	id "spring-boot-platform.java-conventions"
+	id "spring-boot-platform.pitest"
 	id "org.springframework.boot"
 }
 
