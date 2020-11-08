@@ -11,5 +11,9 @@ sonarqube {
 			"build/reports/spotbugs/main.xml",
 			"build/reports/spotbugs/test.xml"
 		]
+		property "sonar.java.pmd.reportPaths", [
+			"build/reports/pmd/main.xml",
+			"build/reports/pmd/test.xml"
+		]
 	}
 }
