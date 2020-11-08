@@ -5,9 +5,3 @@ task copyToLib(type: Copy) {
 	into "$rootProject.buildDir/libs"
 }
 copyToLib.dependsOn build
-
-gradle.taskGraph.whenReady { taskGraph ->
-	if (taskGraph.hasTask(stage)) {
-		test.enabled = false
-	}
-}
