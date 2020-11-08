@@ -7,7 +7,7 @@ dependencies {
 }
 
 pitest {
-    testPlugin = "junit5"
+	testPlugin = "junit5"
 	jvmArgs.add("--enable-preview")
 	threads = 4
 	outputFormats = ['XML', 'HTML']

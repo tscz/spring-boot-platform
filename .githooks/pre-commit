@@ -1,0 +1,10 @@
+#!/bin/sh
+echo '[git hook] check formatting before commit'
+
+# run the spotlessCheck with the gradle wrapper
+./gradlew spotlessCheck --daemon
+
+# store the last exit code
+RESULT=$?
+
+exit $RESULT
