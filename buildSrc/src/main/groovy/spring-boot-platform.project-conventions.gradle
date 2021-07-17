@@ -21,7 +21,7 @@ spotless {
 		target 'src/*/java/**/*.java'
 		importOrder('java', 'javax', 'io', 'com', 'org', 'com.github.tscz','')
 		removeUnusedImports()
-		eclipse('4.17.0')
+		eclipse('4.19.0')
 	}
 	groovyGradle {
 		target '**/*.gradle'

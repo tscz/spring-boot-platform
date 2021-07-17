@@ -1,5 +1,7 @@
 package com.github.tscz.spring.platform.testentity;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -51,6 +53,23 @@ public class TestEntity {
 	@Override
 	public String toString() {
 		return "Testentity [id=" + id + ", title=" + title + ", description=" + description + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(description, title);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TestEntity other = (TestEntity) obj;
+		return Objects.equals(description, other.description) && Objects.equals(title, other.title);
 	}
 
 }

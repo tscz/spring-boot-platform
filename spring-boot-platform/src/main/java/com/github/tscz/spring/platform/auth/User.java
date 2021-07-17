@@ -18,4 +18,13 @@ public class User {
 	@Column
 	private Boolean enabled;
 
+	public User() {
+	}
+
+	public User(String username, String password, Boolean enabled) {
+		this.username = username;
+		this.password = password;
+		this.enabled = enabled;
+	}
+
 }

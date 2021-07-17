@@ -1,7 +1,7 @@
 package com.github.tscz.spring.platform.jwt;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.BDDAssertions.then;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -63,14 +63,14 @@ public class JwtFilterTest {
 		when(userManager.loadUserByUsername("username"))
 				.thenReturn(new User("username", "password", Collections.emptyList()));
 
-		assertThat(SecurityContextHolder.getContext().getAuthentication()).isNull();
+		then(SecurityContextHolder.getContext().getAuthentication()).isNull();
 
 		standaloneSetup(new DummyController())//
 				.addFilters(tokenAuthenticationFilter).build()//
 				.perform(get("/dummy").header(HttpHeaders.AUTHORIZATION, "Bearer " + token))//
 				.andExpect(status().isOk());
 
-		assertThat(SecurityContextHolder.getContext().getAuthentication()).isNotNull();
+		then(SecurityContextHolder.getContext().getAuthentication()).isNotNull();
 	}
 
 	@Test

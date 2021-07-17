@@ -2,7 +2,9 @@ package com.github.tscz.spring.platform.auth;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,10 +15,19 @@ public class Authorities implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue
+	private Long id;
+
+	@Column
 	private String username;
 
-	@Id
+	@Column
 	private String authority;
+
+	public Authorities(String username, String authority) {
+		this.username = username;
+		this.authority = authority;
+	}
 
 	@Override
 	public int hashCode() {
