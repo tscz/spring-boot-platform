@@ -41,9 +41,4 @@ public class ErrorHandling implements ErrorController, ProblemHandling, Security
 
 	}
 
-	@Override
-	public String getErrorPath() {
-		return "/error";
-	}
-
 }
