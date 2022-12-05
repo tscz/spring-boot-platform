@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<ruleset>
+    <rule ref="category/java/bestpractices.xml"></rule>
+    <rule ref="category/java/codestyle.xml"></rule>
+    <rule ref="category/java/design.xml"></rule>
+    <rule ref="category/java/documentation.xml">
+        <exclude name="CommentRequired"/>
+    </rule>
+    <rule ref="category/java/errorprone.xml"></rule>
+    <rule ref="category/java/multithreading.xml"></rule>
+    <rule ref="category/java/performance.xml"></rule>
+    <rule ref="category/java/security.xml"></rule>
+</ruleset>
