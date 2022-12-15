@@ -27,7 +27,7 @@ configurations["testRuntimeClasspath"].extendsFrom(internal)
 
 javadoc.options {
 	addBooleanOption('-enable-preview', true)
-	addStringOption('-release', '17')
+	addStringOption('-release', '19')
 }
 
 tasks.withType(JavaCompile) {
