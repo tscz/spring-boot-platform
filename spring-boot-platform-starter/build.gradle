@@ -2,6 +2,8 @@ import com.github.tscz.spring.platform.gradle.Versions;
 
 plugins {
 	id "spring-boot-platform.library-conventions"
+	id "org.springframework.boot"
+	id 'io.spring.dependency-management'
 }
 
 def versions = new Versions(project)
@@ -16,21 +18,24 @@ dependencies {
 	api 'io.jsonwebtoken:jjwt-api:' + versions.get("jjwt.version")
 	api 'io.jsonwebtoken:jjwt-impl:' + versions.get("jjwt.version")
 	api 'io.jsonwebtoken:jjwt-jackson:' + versions.get("jjwt.version")
-	api 'org.zalando:problem-spring-web:' + versions.get("problem.version")
 	api 'org.springframework.boot:spring-boot-starter-data-jpa'
 	api 'org.springframework.boot:spring-boot-starter-web'
 	api 'org.springframework.boot:spring-boot-starter-security'
 	api 'org.springframework.boot:spring-boot-starter-validation'
 
-	api 'org.postgresql:postgresql:' + versions.get("postgres.version")
+	api 'org.postgresql:postgresql'
 	api 'org.testcontainers:postgresql:' + versions.get("testcontainers.version")
 	api 'org.testcontainers:testcontainers:' + versions.get("testcontainers.version")
 	api 'org.testcontainers:junit-jupiter:' + versions.get("testcontainers.version")
 
 	api 'org.apache.httpcomponents:httpclient:' + versions.get("httpclient.version")
-	api 'com.h2database:h2:' + versions.get("h2.version")
-	api 'net.javacrumbs.json-unit:json-unit-assertj:' + versions.get("jsonassert.version")
-	api 'org.springframework.boot:spring-boot-starter-test:'
-	api 'org.springframework.restdocs:spring-restdocs-mockmvc:'
-	api 'org.springframework.security:spring-security-test:'
+	api 'com.h2database:h2'
+	api 'net.javacrumbs.json-unit:json-unit-assertj:' + versions.get("json_unit.version")
+	api 'org.springframework.boot:spring-boot-starter-test'
+	api 'org.springframework.restdocs:spring-restdocs-mockmvc'
+	api 'org.springframework.security:spring-security-test'
+}
+
+bootJar {
+	enabled = false
 }

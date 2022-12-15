@@ -10,10 +10,10 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ProblemDetail;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.zalando.problem.Problem;
 
 import com.github.tscz.spring.platform.jwt.JwtRequest;
 import com.github.tscz.spring.platform.jwt.JwtResponse;
@@ -33,9 +33,9 @@ public class JwtAuthenticationControllerTest {
 		given(authenticationManager.authenticate(new UsernamePasswordAuthenticationToken("unknown", "unknown")))
 				.willThrow(BadCredentialsException.class);
 
-		var response = restTemplate.postForEntity("/token", request, Problem.class);
+		var response = restTemplate.postForEntity("/token", request, ProblemDetail.class);
 
-		then(response.getStatusCode()).isEqualTo(HttpStatus.UNAUTHORIZED);
+		then(response.getStatusCode()).isEqualTo(HttpStatus.FORBIDDEN);
 		System.out.println(response.getBody());
 	}
 
