@@ -28,9 +28,9 @@ import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.web.ErrorResponseException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.zalando.problem.violations.ConstraintViolationProblem;
 
 @ExtendWith(SpringExtension.class)
 public class JwtFilterTest {
@@ -105,7 +105,7 @@ public class JwtFilterTest {
 				.addFilters(tokenAuthenticationFilter).build()//
 				.perform(get("/dummy")))//
 
-						.isExactlyInstanceOf(ConstraintViolationProblem.class);
+						.isExactlyInstanceOf(ErrorResponseException.class);
 	}
 
 	@Test
@@ -119,7 +119,7 @@ public class JwtFilterTest {
 						.header(HttpHeaders.AUTHORIZATION,
 								"This should start with 'Bearer ' followed by a valid token")))//
 
-										.isExactlyInstanceOf(ConstraintViolationProblem.class);
+										.isExactlyInstanceOf(ErrorResponseException.class);
 	}
 
 	@ParameterizedTest

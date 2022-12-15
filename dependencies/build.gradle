@@ -2,6 +2,8 @@ import com.github.tscz.spring.platform.gradle.Versions;
 
 plugins {
 	id 'java-platform'
+	id 'org.springframework.boot'
+	id 'io.spring.dependency-management'
 }
 
 def versions = new Versions(project)
@@ -15,10 +17,9 @@ dependencies {
 		api 'io.jsonwebtoken:jjwt-api:' + versions.get("jjwt.version")
 		api 'io.jsonwebtoken:jjwt-impl:' + versions.get("jjwt.version")
 		api 'io.jsonwebtoken:jjwt-jackson:' + versions.get("jjwt.version")
-		api 'org.zalando:problem-spring-web:' + versions.get("problem.version")
-		runtime 'org.postgresql:postgresql:' + versions.get("postgres.version")
+		runtime 'org.postgresql:postgresql'
 		api 'org.apache.httpcomponents:httpclient:' + versions.get("httpclient.version")
-		runtime 'com.h2database:h2:' + versions.get("h2.version")
-		api 'net.javacrumbs.json-unit:json-unit-assertj:' + versions.get("jsonassert.version")
+		runtime 'com.h2database:h2'
+		api 'net.javacrumbs.json-unit:json-unit-assertj:' + versions.get("json_unit.version")
 	}
 }

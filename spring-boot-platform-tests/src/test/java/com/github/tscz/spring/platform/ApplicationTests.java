@@ -27,7 +27,6 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
-import org.zalando.problem.violations.ConstraintViolationProblem;
 
 import com.github.tscz.spring.platform.auth.Authorities;
 import com.github.tscz.spring.platform.auth.User;
@@ -55,11 +54,13 @@ public class ApplicationTests {
 	static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 		@Override
 		public void initialize(ConfigurableApplicationContext configurableApplicationContext) {
-			TestPropertyValues
-					.of("spring.datasource.url=" + postgresContainer.getJdbcUrl(),
-							"spring.datasource.username=" + postgresContainer.getUsername(),
-							"spring.datasource.password=" + postgresContainer.getPassword())
-					.applyTo(configurableApplicationContext.getEnvironment());
+			TestPropertyValues.of(//
+					"spring.datasource.url=" + postgresContainer.getJdbcUrl(),
+					"spring.datasource.username=" + postgresContainer.getUsername(),
+					"spring.datasource.password=" + postgresContainer.getPassword(),
+					"spring.jpa.properties.hibernate.temp.use_jdbc_metadata_defaults=false"
+			//
+			).applyTo(configurableApplicationContext.getEnvironment());
 		}
 	}
 
@@ -117,7 +118,7 @@ public class ApplicationTests {
 		then(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
 		and.then(response.getBody())//
 				.isObject()//
-				.containsEntry("type", ConstraintViolationProblem.TYPE_VALUE)//
+				.containsEntry("type", "about:blank")//
 				.containsEntry("status", BigDecimal.valueOf(HttpStatus.BAD_REQUEST.value()))//
 				.containsEntry("title", "Constraint Violation");
 
